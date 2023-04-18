@@ -17,12 +17,12 @@ fi
 
 # mpv fullscreen on second display and taskspooler
 fullscreen() {
-      ts mpv --no-terminal --fs --fs-screen=1 "${url}" 1>/dev/null 
+      tsp mpv --no-terminal --fs --fs-screen=1 "${url}" 1>/dev/null 
 }
 
 # mpv and taskspooler
 video() {
-      ts mpv --no-terminal "${url}" 1>/dev/null
+      tsp mpv --no-terminal "${url}" 1>/dev/null
 }
 
 dash () {
@@ -41,7 +41,7 @@ open() {
 
 # yt-dlp and taskspooler
 ytdlp() {
-      ts \
+      tsp \
       yt-dlp \
       --ignore-config \
       --no-playlist \
@@ -53,7 +53,7 @@ ytdlp() {
 
 # aria2c and taskspooler
 aria2c() {
-      ts \
+      tsp \
       yt-dlp \
       --ignore-config \
       --no-playlist \
@@ -66,7 +66,7 @@ aria2c() {
 
 # ffmpeg and taskspooler
 ffmpeg() {
-      ts \
+      tsp \
       yt-dlp \
       --ignore-config \
       --no-playlist \
@@ -79,7 +79,7 @@ ffmpeg() {
 
 # download with yt-dlp with sponsorblock to remove sponsor
 sponsorblock_download() {
-      ts \
+      tsp \
       yt-dlp \
       --ignore-config \
       --no-playlist \
@@ -91,12 +91,7 @@ sponsorblock_download() {
 
 # mpd and taskspooler
 audio() {
-      ts pinch -i "${url}" 1>/dev/null 
-}
-
-# streamlink and taskspooler
-streamlink() {
-      ts streamlink -o "${HOME}/Downloads/{title}-{time}.mkv" "${url}" 1080p,720p 1>/dev/null
+      tsp pinch -i "${url}" 1>/dev/null 
 }
 
 transmission () {
@@ -114,7 +109,6 @@ open='open         - open link in browser'
 sponsorblock_ts='sponsorblock - sponsorblock yt-dlp'
 fullscreen_ts='fullscreen   - mpv play fullscreen on second display'
 video_ts='video        - mpv play video on current display'
-streamlink_ts='streamlink   - streamlink'
 transmission_remote='transmission - add torrent or magnet link'
 
 # fzf prompt to specify function to run on links from ytfzf
@@ -130,7 +124,6 @@ menu=$(printf "%s\n" \
 	      "${audio_ts}" \
 	      "${transmission_remote}" \
 	      "${sponsorblock_ts}" \
-	      "${streamlink_ts}" \
 	      | fzf-tmux -d 32% --delimiter='\n' --prompt='Pipe links to: ' --info=inline --layout=reverse --no-multi)
 
 case "${menu}" in
@@ -142,7 +135,6 @@ case "${menu}" in
    sponsor*)sponsorblock_download ;;
    ffmpeg*) ffmpeg;;
    fullscreen*) fullscreen;;
-   streamlink*) streamlink;;
    transmission*) transmission;;
    video*) video;;
    yt-dlp*) ytdlp;;
