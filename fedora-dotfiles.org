@@ -1069,7 +1069,7 @@ export DVDCSS_CACHE="${XDG_DATA_HOME}/dvdcss"
 # set emacsclient as editor
 export ALTERNATE_EDITOR=""
 export EDITOR="emacsclient -a emacs"
-export VISUAL="emacsclient -c -a emacs"
+export VISUAL="emacsclient -a emacs"
 
 # tell ls to be colourfull
 export LSCOLORS=ExFxCxDxBxegedabagacad
