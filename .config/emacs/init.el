@@ -26,7 +26,7 @@
  '(custom-safe-themes
    '("636b135e4b7c86ac41375da39ade929e2bd6439de8901f53f88fde7dd5ac3561" "" default))
  '(package-selected-packages
-   '(all-the-icons consult doom-themes doom-modeline ednc embark embark-consult emmet-mode evil-collection evil-leader evil-surround fd-dired flycheck git-commit git-auto-commit-mode iedit magit magit-section marginalia ob-async openwith orderless rg s shrink-path undo-tree vertico wgrep which-key yaml-mode))
+   '(all-the-icons consult doom-themes doom-modeline ednc embark embark-consult emmet-mode evil-collection evil-leader evil-surround fd-dired flycheck git-commit git-auto-commit-mode hydra iedit magit magit-section marginalia mpv ob-async openwith orderless rg s shrink-path undo-tree vertico wgrep which-key yaml-mode youtube-sub-extractor))
  '(warning-suppress-types '((comp))))
 
 ;; require package
@@ -604,6 +604,229 @@
 ;; flycheck syntax linting
 (add-hook 'sh-mode-hook 'flycheck-mode)
 
+
+;; ----------------------------------------------------------------------------------
+;; mpv.el
+;; ----------------------------------------------------------------------------------
+
+(org-link-set-parameters "mpv" :follow #'mpv-play)
+(defun org-mpv-complete-link (&optional arg)
+  (replace-regexp-in-string
+   "file:" "mpv:"
+   (org-link-complete-file arg)
+   t t))
+
+;; M-RET will insert a new item with the timestamp of the current playback position
+(defun my:mpv/org-metareturn-insert-playback-position ()
+  (when-let ((item-beg (org-in-item-p)))
+    (when (and (not org-timer-start-time)
+               (mpv-live-p)
+               (save-excursion
+                 (goto-char item-beg)
+                 (and (not (org-invisible-p)) (org-at-item-timer-p))))
+      (my/mpv-insert-playback-position t))))
+(add-hook 'org-metareturn-hook #'my:mpv/org-metareturn-insert-playback-position)
+
+;; mpv insert playback position
+(with-eval-after-load 'mpv
+  (defun my/mpv-insert-playback-position (&optional arg)
+    "Insert the current playback position at point.
+
+  When called with a non-nil ARG, insert a timer list item like `org-timer-item'."
+    (interactive "P")
+    (let ((time (mpv-get-playback-position)))
+      (funcall
+       (if arg #'mpv--position-insert-as-org-item #'insert)
+       (my/org-timer-secs-to-hms (float time))))))
+
+
+;; seek to position
+(with-eval-after-load 'mpv
+  (defun my/mpv-seek-to-position-at-point ()
+    "Jump to playback position as inserted by `mpv-insert-playback-position'.
+
+  This can be used with the `org-open-at-point-functions' hook."
+    (interactive)
+    (save-excursion
+      (skip-chars-backward ":[:digit:]" (point-at-bol))
+      (when (looking-at "[0-9]+:[0-9]\\{2\\}:[0-9]\\{2\\}\\([.]?[0-9]\\{0,3\\}\\)"))
+        (let ((secs (my/org-timer-hms-to-secs (match-string 0))))
+          (when (>= secs 0)
+            (mpv-seek secs))))))
+
+;; mpv seek to position at point
+(keymap-set global-map "C-x ," 'my/mpv-seek-to-position-at-point)
+
+
+;; ----------------------------------------------------------------------------------
+;; org-timer milliseconds for mpv
+;; ----------------------------------------------------------------------------------
+
+;; org-timer covert seconds and milliseconds to hours, minutes, seconds, milliseconds
+(with-eval-after-load 'org-timer
+  (defun my/org-timer-secs-to-hms (s)
+    "Convert integer S into hh:mm:ss.m
+  If the integer is negative, the string will start with \"-\"."
+    (let (sign m h)
+      (setq x (number-to-string s)
+            seconds (car (split-string x "[.]"))
+            milliseconds (cadr (split-string x "[.]"))
+            sec (string-to-number seconds)
+            ms (string-to-number milliseconds))
+      (setq sign (if (< sec 0) "-" "")
+          sec (abs sec)
+          m (/ sec 60) sec (- sec (* 60 m))
+          h (/ m 60) m (- m (* 60 h)))
+      (format "%s%02d:%02d:%02d.%02d" sign h m sec ms))))
+
+;; org-timer covert hours, minutes, seconds, milliseconds to seconds, milliseconds
+(with-eval-after-load 'org-timer
+  (defun my/org-timer-hms-to-secs (hms)
+    "Convert h:mm:ss string to an integer time.
+  If the string starts with a minus sign, the integer will be negative."
+    (if (not (string-match
+            "\\([-+]?[0-9]+\\):\\([0-9]\\{2\\}\\):\\([0-9]\\{2\\}\\)\\([.]?[0-9]\\{0,3\\}\\)"
+            hms))
+        0
+      (let* ((h (string-to-number (match-string 1 hms)))
+           (m (string-to-number (match-string 2 hms)))
+           (s (string-to-number (match-string 3 hms)))
+           (ms (string-to-number (match-string 4 hms)))
+           (sign (equal (substring (match-string 1 hms) 0 1) "-")))
+        (setq h (abs h))
+        (* (if sign -1 1) (+ s (+ ms (* 60 (+ m (* 60 h))))))))))
+
+
+;; ----------------------------------------------------------------------------------
+;; mpv commands
+;; ----------------------------------------------------------------------------------
+
+;; frame step forward
+(with-eval-after-load 'mpv
+  (defun mpv-frame-step ()
+    "Step one frame forward."
+    (interactive)
+    (mpv--enqueue '("frame-step") #'ignore)))
+
+
+;; frame step backward
+(with-eval-after-load 'mpv
+  (defun mpv-frame-back-step ()
+    "Step one frame backward."
+    (interactive)
+    (mpv--enqueue '("frame-back-step") #'ignore)))
+
+
+;; mpv take a screenshot
+(with-eval-after-load 'mpv
+  (defun mpv-screenshot ()
+    "Take a screenshot"
+    (interactive)
+    (mpv--enqueue '("screenshot") #'ignore)))
+
+
+;; mpv show osd
+(with-eval-after-load 'mpv
+  (defun mpv-osd ()
+    "Show the osd"
+    (interactive)
+    (mpv--enqueue '("set_property" "osd-level" "3") #'ignore)))
+
+
+;; add a newline in the current document
+(defun end-of-line-and-indented-new-line ()
+  (interactive)
+  (end-of-line)
+  (newline-and-indent))
+
+
+;; ----------------------------------------------------------------------------------
+;; hydra
+;; ----------------------------------------------------------------------------------
+
+(defhydra hydra-mpv (global-map "<f2>")
+  "
+  ^Seek^                    ^Actions^                ^General^
+  ^^^^^^^^---------------------------------------------------------------------------
+  _h_: seek back -5         _,_: back frame          _i_: insert playback position
+  _j_: seek back -60        _._: forward frame       _n_: insert a newline
+  _k_: seek forward 60      _SPC_: pause             _s_: take a screenshot
+  _l_: seek forward 5       _q_: quit mpv            _o_: show the osd
+  ^
+  "
+  ("h" mpv-seek-backward "-5")
+  ("j" mpv-seek-backward "-60")
+  ("k" mpv-seek-forward "60")
+  ("l" mpv-seek-forward "5")
+  ("," mpv-frame-back-step)
+  ("." mpv-frame-step)
+  ("SPC" mpv-pause)
+  ("q" mpv-kill)
+  ("s" mpv-screenshot)
+  ("i" my/mpv-insert-playback-position)
+  ("o" mpv-osd)
+  ("n" end-of-line-and-indented-new-line))
+
+
+;; ----------------------------------------------------------------------------------
+;; youtube-sub-extractor.el
+;; ----------------------------------------------------------------------------------
+
+(require 'youtube-sub-extractor)
+
+;; display timestamps on the left so we can use them with mpv.el
+(setq youtube-sub-extractor-timestamps 'left-side-text)
+
+;; show the full timestamp for mpv
+(defun youtube-sub-extractor--create-subs-buffer (subs-file vid-url)
+  "Read SUBS-FILE and insert the content in a buffer.
+VID-URL gets used later for browsing video at specific timestamp."
+  (let* ((raw (with-temp-buffer
+                (insert-file-contents subs-file)
+                (buffer-string)))
+         (subs-lst (youtube-sub-extractor--process-subs raw))
+         (buf (generate-new-buffer (file-name-base subs-file)))
+         ;; if the vid shorter than hour, no need to show hours - timestamps would be s:ms
+         (mins-only? (zerop (nth 2 (parse-time-string (cl-first (cl-first (last subs-lst))))))))
+    (with-current-buffer buf
+      (insert (format "%s\n\n" (file-name-base subs-file)))
+      (dolist (el subs-lst)
+        (let* ((full-ts (nth 0 el))
+               ;;(ts (substring full-ts (if mins-only? 3 0) 8))
+               ;; show full timestamp for mpv
+               (ts (substring full-ts (if mins-only? 0 0) 8))
+               (sub-text (nth 1 el))
+               (pos (point))
+               (_ (progn
+                    (when (eq youtube-sub-extractor-timestamps 'left-side-text)
+                      (insert (format "%s\t" ts)))
+                    (insert (format "%s" (string-join sub-text " ")))
+                    (save-excursion
+                      (add-text-properties
+                       (line-beginning-position)
+                       (line-end-position)
+                       `(help-echo ,ts timestamp ,full-ts)))
+                    (insert "\n")))
+               (ovrl (make-overlay (1+ pos) (point) nil t))
+               (ovrl-txt (or ts ""))
+               (margin (if (eq youtube-sub-extractor-timestamps 'right-margin)
+                           'right-margin 'left-margin)))
+          (overlay-put
+           ovrl 'before-string
+           (propertize ovrl-txt 'display `((margin ,margin) ,ovrl-txt)))))
+      (goto-char (point-min))
+      (setq-local video-url vid-url)
+      (youtube-sub-extractor-subtitles-mode +1)
+      (read-only-mode +1))
+      ;; (switch-to-buffer-other-window buf)
+      ;; open buffer fullsize in the same buffer
+      (pop-to-buffer-same-window buf)
+    (unless (or (eq youtube-sub-extractor-timestamps 'left-side-text)
+                (null youtube-sub-extractor-timestamps))
+      (set-window-margins
+       nil
+       (when (eq youtube-sub-extractor-timestamps 'left-margin) 9)
+       (when (eq youtube-sub-extractor-timestamps 'right-margin) 9)))))
 
 ;; ----------------------------------------------------------------------------------
 ;; emacs desktop notification center
