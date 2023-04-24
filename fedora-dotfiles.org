@@ -878,9 +878,6 @@ VID-URL gets used later for browsing video at specific timestamp."
 (setq gc-cons-threshold (* 2 1000 1000))
 #+END_SRC
 
-#+RESULTS: init.el
-: 2000000
-
 **** early-init.el
 
 #+NAME: early-init.el
@@ -920,9 +917,6 @@ VID-URL gets used later for browsing video at specific timestamp."
 ;; Make the initial buffer load faster by setting its mode to fundamental-mode
 (customize-set-variable 'initial-major-mode 'fundamental-mode)
 #+end_src
-
-#+RESULTS: early-init.el
-: fundamental-mode
 
 **** bookmarks config
 
