@@ -3552,6 +3552,7 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UCAiiOTio8Yu69c3XnR7nQBQ ema
 #+NAME: newsboat-urls-reddit
 #+BEGIN_SRC conf
 # reddit rss
+https://www.reddit.com/r/Fedora/new.rss reddit "~Fedora"
 https://www.reddit.com/r/linux/new.rss reddit "~Linux" 
 https://www.reddit.com/r/torrents/new.rss "~Torrents"
 https://www.reddit.com/r/Piracy/new.rss "~Piracy"
