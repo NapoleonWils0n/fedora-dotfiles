@@ -74,7 +74,7 @@
 (global-auto-revert-mode 1) ;; revert buffers when the underlying file has changed
 
 ;; scrolling
-;;(pixel-scroll-precision-mode 1)
+(pixel-scroll-precision-mode 1)
 
 
 ;; ----------------------------------------------------------------------------------
