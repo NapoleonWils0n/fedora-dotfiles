@@ -1330,6 +1330,23 @@ export GIT_PAGER="bat --color=always -p -l rs"
 
 ** systemd
 *** systemd config
+**** emacs.service
+
+#+NAME: emacs.service
+#+BEGIN_SRC conf
+[Unit]
+Description=Emacs: the extensible, self-documenting text editor
+
+[Service]
+Type=forking
+ExecStart=/usr/local/bin/emacs --daemon
+ExecStop=/usr/local/bin/emacsclient --eval "(kill-emacs)"
+Restart=always
+
+[Install]
+WantedBy=default.target
+#+END_SRC
+
 **** mpd.service
 
 #+NAME: mpd.service
@@ -1391,6 +1408,22 @@ WantedBy=default.target
 #+END_SRC
 
 *** systemd tangle
+**** emacs.service
+
++ home dir
+
+#+NAME: emacs.service-home-dir
+#+BEGIN_SRC conf :noweb yes :tangle "~/.config/systemd/user/emacs.service"
+<<emacs.service>>
+#+END_SRC
+
++ current dir
+
+#+NAME: emacs.service-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle ".config/systemd/user/emacs.service"
+<<emacs.service>>
+#+END_SRC
+
 **** mpd.service
 
 + home dir
