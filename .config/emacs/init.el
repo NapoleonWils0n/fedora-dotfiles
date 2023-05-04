@@ -439,6 +439,9 @@
 ;; keymap-global-set
 ;; ----------------------------------------------------------------------------------
 
+;; fix for macbook air
+(keymap-global-set "M-s-x" 'execute-extended-command)
+
 ;; magit
 (keymap-global-set "C-x g" 'magit-status)
 
