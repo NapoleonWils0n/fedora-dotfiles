@@ -1764,10 +1764,10 @@ msg-level=ffmpeg=fatal
 cache=no
 
 # yt-dlp best format 1080 or less
-#ytdl-format="bestvideo[height<=?1080]+bestaudio/best"
+ytdl-format="bestvideo[height<=?1080]+bestaudio/best"
 
 # use ~/.config/mpv/scripts/ytdl_hook.lua to fix no audio issue with yt-dlp 2023.03.04
-no-ytdl
+#no-ytdl
 
 # show milliseconds in the on screen display
 osd-fractions
