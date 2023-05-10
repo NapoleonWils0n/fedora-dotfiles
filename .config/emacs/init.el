@@ -202,8 +202,8 @@
 (require 'doom-modeline)
 (doom-modeline-mode 1)
 
-;; don't display icons in the mode-line.
-(setq doom-modeline-icon nil)
+;; M-x nerd-icons-install-fonts
+(setq doom-modeline-icon t)
 
 ;; doom modeline truncate text
 (setq doom-modeline-buffer-file-name-style 'truncate-except-project)
