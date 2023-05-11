@@ -1079,7 +1079,13 @@ VID-URL gets used later for browsing video at specific timestamp."
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("dotfiles"
+(("feeds"
+ (filename . "~/git/personal/elfeed/feeds.org")
+ (front-context-string . "* elfeed :elfeed")
+ (rear-context-string . "TARTUP: content\n")
+ (position . 20)
+ (last-modified 25692 54791 894815 365000))
+("dotfiles"
  (filename . "~/git/fedora/fedora-dotfiles/fedora-dotfiles.org")
  (front-context-string . "* fedora dotfile")
  (rear-context-string . "g\")'\n#+end_src\n\n")
