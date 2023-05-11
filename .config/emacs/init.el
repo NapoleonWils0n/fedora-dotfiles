@@ -979,9 +979,13 @@ VID-URL gets used later for browsing video at specific timestamp."
 (add-to-list 'evil-motion-state-modes 'elfeed-search-mode)
 (add-to-list 'evil-motion-state-modes 'elfeed-show-mode)
 
-;; elfeed l opens entry
+;; elfeed evil keybindings
 (evil-collection-define-key 'normal 'elfeed-search-mode-map
-    "l" 'elfeed-search-show-entry)
+     "l" 'elfeed-search-show-entry        ;; l opens entry
+     "s" #'prot-elfeed-search-tag-filter  ;; s prot search tags
+     "R" 'elfeed-mark-all-as-read         ;; R mark all as read
+     "u" 'elfeed-update                   ;; u elfeed update
+     "r" 'elfeed-search-untag-all-unread) ;; r mark as read
 
 ; elfeed search filter 
 (setq-default elfeed-search-filter "@1-week-ago +unread")
@@ -992,7 +996,98 @@ VID-URL gets used later for browsing video at specific timestamp."
       (mark-whole-buffer)
       (elfeed-search-untag-all-unread))
       
-(define-key elfeed-search-mode-map (kbd "R") 'elfeed-mark-all-as-read)
+
+;; ----------------------------------------------------------------------------------
+;; prot elfeed - requires ~/.config/emacs/lisp/prot-common.el
+;; ----------------------------------------------------------------------------------
+
+(eval-when-compile (require 'subr-x))
+;;(require 'elfeed nil t)
+(require 'url-util)
+(require 'prot-common)
+
+(defgroup prot-elfeed ()
+  "Personal extensions for Elfeed."
+  :group 'elfeed)
+
+;;;; Utilities
+(defvar prot-elfeed--tag-hist '()
+  "History of inputs for `prot-elfeed-toggle-tag'.")
+
+(defun prot-elfeed--character-prompt (tags)
+  "Helper of `prot-elfeed-toggle-tag' to read TAGS."
+  (let ((def (car prot-elfeed--tag-hist)))
+    (completing-read
+     (format "Toggle tag [%s]: " def)
+     tags nil t nil 'prot-elfeed--tag-hist def)))
+
+(defvar elfeed-show-entry)
+(declare-function elfeed-tagged-p "elfeed")
+(declare-function elfeed-search-toggle-all "elfeed")
+(declare-function elfeed-show-tag "elfeed")
+(declare-function elfeed-show-untag "elfeed")
+
+;;;###autoload
+(defun prot-elfeed-toggle-tag (tag)
+  "Toggle TAG for the current item.
+
+When the region is active in the `elfeed-search-mode' buffer, all
+entries encompassed by it are affected.  Otherwise the item at
+point is the target.  For `elfeed-show-mode', the current entry
+is always the target.
+
+The list of tags is provided by `prot-elfeed-search-tags'."
+  (interactive
+   (list
+    (intern
+     (prot-elfeed--character-prompt prot-elfeed-search-tags))))
+  (if (derived-mode-p 'elfeed-show-mode)
+      (if (elfeed-tagged-p tag elfeed-show-entry)
+          (elfeed-show-untag tag)
+        (elfeed-show-tag tag))
+    (elfeed-search-toggle-all tag)))
+
+(defvar elfeed-show-truncate-long-urls)
+(declare-function elfeed-entry-title "elfeed")
+(declare-function elfeed-show-refresh "elfeed")
+
+;;;; General commands
+(defvar elfeed-search-filter-active)
+(defvar elfeed-search-filter)
+(declare-function elfeed-db-get-all-tags "elfeed")
+(declare-function elfeed-search-update "elfeed")
+(declare-function elfeed-search-clear-filter "elfeed")
+
+(defun prot-elfeed--format-tags (tags sign)
+  "Prefix SIGN to each tag in TAGS."
+  (mapcar (lambda (tag)
+            (format "%s%s" sign tag))
+          tags))
+
+;;;###autoload
+(defun prot-elfeed-search-tag-filter ()
+  "Filter Elfeed search buffer by tags using completion.
+
+Completion accepts multiple inputs, delimited by `crm-separator'.
+Arbitrary input is also possible, but you may have to exit the
+minibuffer with something like `exit-minibuffer'."
+  (interactive)
+  (unwind-protect
+      (elfeed-search-clear-filter)
+    (let* ((elfeed-search-filter-active :live)
+           (db-tags (elfeed-db-get-all-tags))
+           (plus-tags (prot-elfeed--format-tags db-tags "+"))
+           (minus-tags (prot-elfeed--format-tags db-tags "-"))
+           (all-tags (delete-dups (append plus-tags minus-tags)))
+           (tags (completing-read-multiple
+                  "Apply one or more tags: "
+                  all-tags #'prot-common-crm-exclude-selected-p t))
+           (input (string-join `(,elfeed-search-filter ,@tags) " ")))
+      (setq elfeed-search-filter input))
+    (elfeed-search-update :force)))
+
+(provide 'prot-elfeed)
+
 
 ;; ----------------------------------------------------------------------------------
 ;; garbage collection
