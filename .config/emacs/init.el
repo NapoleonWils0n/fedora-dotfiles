@@ -110,8 +110,9 @@
  '(custom-safe-themes
    '("636b135e4b7c86ac41375da39ade929e2bd6439de8901f53f88fde7dd5ac3561" "" default))
  '(package-selected-packages
-   '(all-the-icons consult doom-themes doom-modeline ednc embark-consult emmet-mode evil-collection evil-leader evil-surround fd-dired flycheck git-commit git-auto-commit-mode hydra iedit magit magit-section marginalia mpv nerd-icons ob-async openwith orderless rg s shrink-path undo-tree vertico wgrep which-key yaml-mode youtube-sub-extractor))
- '(warning-suppress-types '((comp))))
+   '(all-the-icons consult doom-themes doom-modeline ednc elfeed elfeed-org elfeed-tube elfeed-tube-mpv embark-consult emmet-mode evil-collection evil-leader evil-surround fd-dired flycheck git-commit git-auto-commit-mode hydra iedit magit magit-section marginalia mpv nerd-icons ob-async openwith orderless rg s shrink-path undo-tree vertico wgrep which-key yaml-mode youtube-sub-extractor))
+ '(warning-suppress-types '((comp)))
+ '(youtube-sub-extractor-timestamps 'left-side-text))
 
 ;; require package
 (require 'package)
@@ -944,6 +945,54 @@ VID-URL gets used later for browsing video at specific timestamp."
 
 (add-hook 'ednc-view-mode-hook 'noevil)
 
+
+;; ----------------------------------------------------------------------------------
+;; elfeed
+;; ----------------------------------------------------------------------------------
+
+; elfeed
+(require 'elfeed)
+(require 'elfeed-org)
+(elfeed-org)
+(setq rmh-elfeed-org-files (list "~/git/personal/elfeed/feeds.org"))
+(global-set-key (kbd "C-x w") 'elfeed)
+
+(require 'elfeed-tube)
+(elfeed-tube-setup)
+(define-key elfeed-show-mode-map (kbd "F") 'elfeed-tube-fetch)
+(define-key elfeed-show-mode-map [remap save-buffer] 'elfeed-tube-save)
+(define-key elfeed-search-mode-map (kbd "F") 'elfeed-tube-fetch)
+(define-key elfeed-search-mode-map [remap save-buffer] 'elfeed-tube-save)
+
+(require 'elfeed-tube-mpv)
+(define-key elfeed-show-mode-map (kbd "C-c C-f") 'elfeed-tube-mpv-follow-mode)
+(define-key elfeed-show-mode-map (kbd "C-c C-w") 'elfeed-tube-mpv-where)
+
+;; play video with mpv
+(define-key elfeed-show-mode-map (kbd "C-c C-d") 'elfeed-tube-mpv)
+
+;; mpv play fullscreen on second display
+(setq elfeed-tube-mpv-options
+  '("--cache=yes" "--force-window=yes" "--fs" "--fs-screen=1"))
+
+; elfeed evil
+(add-to-list 'evil-motion-state-modes 'elfeed-search-mode)
+(add-to-list 'evil-motion-state-modes 'elfeed-show-mode)
+
+;; elfeed l opens entry
+(evil-collection-define-key 'normal 'elfeed-search-mode-map
+    "l" 'elfeed-search-show-entry)
+
+; elfeed search filter 
+(setq-default elfeed-search-filter "@1-week-ago +unread")
+
+; mark all as read
+(defun elfeed-mark-all-as-read ()
+      (interactive)
+      (mark-whole-buffer)
+      (elfeed-search-untag-all-unread))
+      
+(define-key elfeed-search-mode-map (kbd "R") 'elfeed-mark-all-as-read)
 
 ;; ----------------------------------------------------------------------------------
 ;; garbage collection
