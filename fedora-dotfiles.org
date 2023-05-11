@@ -1008,13 +1008,19 @@ VID-URL gets used later for browsing video at specific timestamp."
 (add-to-list 'evil-motion-state-modes 'elfeed-search-mode)
 (add-to-list 'evil-motion-state-modes 'elfeed-show-mode)
 
-;; elfeed evil keybindings
+;; evil elfeed-search-mode-map
 (evil-collection-define-key 'normal 'elfeed-search-mode-map
      "l" 'elfeed-search-show-entry        ;; l opens entry
      "s" #'prot-elfeed-search-tag-filter  ;; s prot search tags
      "R" 'elfeed-mark-all-as-read         ;; R mark all as read
      "u" 'elfeed-update                   ;; u elfeed update
+     "b" #'elfeed-search-browse-url       ;; b open in browser
      "r" 'elfeed-search-untag-all-unread) ;; r mark as read
+
+
+;; evil elfeed-show-mode-map
+(evil-collection-define-key 'normal 'elfeed-show-mode-map
+     "b" #'shr-browse-url)                ;; b open in browser
 
 ; elfeed search filter 
 (setq-default elfeed-search-filter "@1-week-ago +unread")
