@@ -1114,7 +1114,7 @@ minibuffer with something like `exit-minibuffer'."
 (undecorated . t) ; remove title bar
 (tool-bar-lines . 0)
 (menu-bar-lines . 0)
-(width . 60)
+(width . 70)
 (height . 11)))
 (unwind-protect
 (app-launcher-run-app)
