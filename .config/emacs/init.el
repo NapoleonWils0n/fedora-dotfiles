@@ -1098,6 +1098,9 @@ minibuffer with something like `exit-minibuffer'."
 ;; app launcher
 ;; ----------------------------------------------------------------------------------
 
+;; create a global keyboard shortcut with the following code
+;; emacsclient -e "(emacs-run-launcher)"
+
 (require 'app-launcher)
 
 ;; app-launcher frame
