@@ -1001,7 +1001,7 @@ VID-URL gets used later for browsing video at specific timestamp."
       (interactive)
       (mark-whole-buffer)
       (elfeed-search-untag-all-unread))
-      
+
 
 ;; ----------------------------------------------------------------------------------
 ;; prot elfeed - requires ~/.config/emacs/lisp/prot-common.el
@@ -1094,6 +1094,28 @@ minibuffer with something like `exit-minibuffer'."
 
 (provide 'prot-elfeed)
 
+;; ----------------------------------------------------------------------------------
+;; app launcher
+;; ----------------------------------------------------------------------------------
+
+(require 'app-launcher)
+
+;; app-launcher frame
+(defun emacs-run-launcher ()
+"Create and select a frame called emacs-run-launcher which consists only of a minibuffer and has specific dimensions. Run app-launcher-run-app on that frame, which is an emacs command that prompts you to select an app and open it in a dmenu like behaviour. Delete the frame after that command has exited"
+(interactive)
+(with-selected-frame (make-frame '((name . "emacs-run-launcher")
+(minibuffer . only)
+(auto-raise . t) ; focus on this frame
+(fullscreen . 0) ; no fullscreen
+(undecorated . t) ; remove title bar
+(tool-bar-lines . 0)
+(menu-bar-lines . 0)
+(width . 60)
+(height . 11)))
+(unwind-protect
+(app-launcher-run-app)
+(delete-frame))))
 
 ;; ----------------------------------------------------------------------------------
 ;; garbage collection
