@@ -1114,6 +1114,7 @@ minibuffer with something like `exit-minibuffer'."
 (undecorated . t) ; remove title bar
 (tool-bar-lines . 0)
 (menu-bar-lines . 0)
+(internal-border-width . 4)
 (width . 70)
 (height . 11)))
 (unwind-protect
