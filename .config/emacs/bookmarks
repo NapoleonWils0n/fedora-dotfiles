@@ -3,13 +3,13 @@
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
 (("bookmarks"
- (filename . "~/git/personal/org/bookmarks.org")
+ (filename . "~/git/personal/bookmarks/bookmarks.org")
  (front-context-string . "#+STARTUP: overv")
  (rear-context-string)
  (position . 1)
  (last-modified 25703 35089 410375 479000))
 ("feeds"
- (filename . "~/git/personal/elfeed/feeds.org")
+ (filename . "~/git/personal/feeds/feeds.org")
  (front-context-string . "* elfeed :elfeed")
  (rear-context-string . "TARTUP: content\n")
  (position . 20)

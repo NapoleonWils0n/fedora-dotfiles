@@ -950,7 +950,7 @@ VID-URL gets used later for browsing video at specific timestamp."
 (require 'elfeed)
 (require 'elfeed-org)
 (elfeed-org)
-(setq rmh-elfeed-org-files (list "~/git/personal/elfeed/feeds.org"))
+(setq rmh-elfeed-org-files (list "~/git/personal/feeds/feeds.org"))
 (global-set-key (kbd "C-x w") 'elfeed)
 
 (require 'elfeed-tube)
