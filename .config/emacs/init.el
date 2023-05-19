@@ -596,8 +596,8 @@
 
 (setq org-capture-templates
     '(("w" "web site" entry
-      (file+olp "~/git/personal/org/bookmarks.org" "sites")
-      (file "~/git/personal/org/templates/tpl-web.txt")
+      (file+olp "~/git/personal/bookmarks/bookmarks.org" "sites")
+      (file "~/git/personal/bookmarks/templates/tpl-web.txt")
        :empty-lines-before 1)))
 
 ;; refile
