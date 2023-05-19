@@ -2,7 +2,13 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("feeds"
+(("bookmarks"
+ (filename . "~/git/personal/org/bookmarks.org")
+ (front-context-string . "#+STARTUP: overv")
+ (rear-context-string)
+ (position . 1)
+ (last-modified 25703 35089 410375 479000))
+("feeds"
  (filename . "~/git/personal/elfeed/feeds.org")
  (front-context-string . "* elfeed :elfeed")
  (rear-context-string . "TARTUP: content\n")
@@ -39,9 +45,4 @@
  (front-context-string . "7zip\n  drwxr-xr-")
  (rear-context-string . "96 Jan  4  2016 ")
  (position . 249))
-("web"
- (filename . "~/git/personal/org/web.org")
- (front-context-string . "#+STARTUP: overv")
- (rear-context-string)
- (position . 1))
 )

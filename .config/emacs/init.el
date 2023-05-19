@@ -595,12 +595,8 @@
 (setq org-export-async-debug t)
 
 (setq org-capture-templates
-    '(("t" "todo" entry
-      (file+headline "~/git/personal/org/todo.org" "Tasks")
-      (file "~/git/personal/org/templates/tpl-todo.txt")
-      :empty-lines-before 1)
-      ("w" "web site" entry
-      (file+olp "~/git/personal/org/web.org" "sites")
+    '(("w" "web site" entry
+      (file+olp "~/git/personal/org/bookmarks.org" "sites")
       (file "~/git/personal/org/templates/tpl-web.txt")
        :empty-lines-before 1)))
 
@@ -1120,6 +1116,7 @@ minibuffer with something like `exit-minibuffer'."
 (unwind-protect
 (app-launcher-run-app)
 (delete-frame))))
+
 
 ;; ----------------------------------------------------------------------------------
 ;; garbage collection
