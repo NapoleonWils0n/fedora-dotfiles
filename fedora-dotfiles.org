@@ -979,6 +979,7 @@ VID-URL gets used later for browsing video at specific timestamp."
 (require 'elfeed)
 (require 'elfeed-org)
 (elfeed-org)
+(setq elfeed-db-directory "~/.config/emacs/elfeed") ;; elfeed db location
 (setq rmh-elfeed-org-files (list "~/git/personal/feeds/feeds.org"))
 (global-set-key (kbd "C-x w") 'elfeed)
 
