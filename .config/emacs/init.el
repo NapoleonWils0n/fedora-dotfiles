@@ -110,7 +110,7 @@
  '(custom-safe-themes
    '("636b135e4b7c86ac41375da39ade929e2bd6439de8901f53f88fde7dd5ac3561" "" default))
  '(package-selected-packages
-   '(all-the-icons consult doom-themes doom-modeline ednc elfeed elfeed-org elfeed-tube elfeed-tube-mpv embark-consult emmet-mode evil-collection evil-leader evil-surround fd-dired flycheck git-commit git-auto-commit-mode hydra iedit magit magit-section marginalia mpv nerd-icons ob-async openwith orderless rg s shrink-path undo-tree vertico wgrep which-key yaml-mode youtube-sub-extractor))
+   '(all-the-icons consult doom-themes doom-modeline elfeed elfeed-org elfeed-tube elfeed-tube-mpv embark-consult emmet-mode evil-collection evil-leader evil-surround fd-dired flycheck git-commit git-auto-commit-mode hydra iedit magit magit-section marginalia mpv nerd-icons ob-async openwith orderless rg s shrink-path undo-tree vertico wgrep which-key yaml-mode))
  '(warning-suppress-types '((comp)))
  '(youtube-sub-extractor-timestamps 'left-side-text))
 
@@ -851,66 +851,6 @@
 
 
 ;; ----------------------------------------------------------------------------------
-;; youtube-sub-extractor.el
-;; ----------------------------------------------------------------------------------
-
-(require 'youtube-sub-extractor)
-
-;; display timestamps on the left so we can use them with mpv.el
-(setq youtube-sub-extractor-timestamps 'left-side-text)
-
-;; show the full timestamp for mpv
-(defun youtube-sub-extractor--create-subs-buffer (subs-file vid-url)
-  "Read SUBS-FILE and insert the content in a buffer.
-VID-URL gets used later for browsing video at specific timestamp."
-  (let* ((raw (with-temp-buffer
-                (insert-file-contents subs-file)
-                (buffer-string)))
-         (subs-lst (youtube-sub-extractor--process-subs raw))
-         (buf (generate-new-buffer (file-name-base subs-file)))
-         ;; if the vid shorter than hour, no need to show hours - timestamps would be s:ms
-         (mins-only? (zerop (nth 2 (parse-time-string (cl-first (cl-first (last subs-lst))))))))
-    (with-current-buffer buf
-      (insert (format "%s\n\n" (file-name-base subs-file)))
-      (dolist (el subs-lst)
-        (let* ((full-ts (nth 0 el))
-               ;;(ts (substring full-ts (if mins-only? 3 0) 8))
-               ;; show full timestamp for mpv
-               (ts (substring full-ts (if mins-only? 0 0) 8))
-               (sub-text (nth 1 el))
-               (pos (point))
-               (_ (progn
-                    (when (eq youtube-sub-extractor-timestamps 'left-side-text)
-                      (insert (format "%s\t" ts)))
-                    (insert (format "%s" (string-join sub-text " ")))
-                    (save-excursion
-                      (add-text-properties
-                       (line-beginning-position)
-                       (line-end-position)
-                       `(help-echo ,ts timestamp ,full-ts)))
-                    (insert "\n")))
-               (ovrl (make-overlay (1+ pos) (point) nil t))
-               (ovrl-txt (or ts ""))
-               (margin (if (eq youtube-sub-extractor-timestamps 'right-margin)
-                           'right-margin 'left-margin)))
-          (overlay-put
-           ovrl 'before-string
-           (propertize ovrl-txt 'display `((margin ,margin) ,ovrl-txt)))))
-      (goto-char (point-min))
-      (setq-local video-url vid-url)
-      (youtube-sub-extractor-subtitles-mode +1)
-      (read-only-mode +1))
-      ;; (switch-to-buffer-other-window buf)
-      ;; open buffer fullsize in the same buffer
-      (pop-to-buffer-same-window buf)
-    (unless (or (eq youtube-sub-extractor-timestamps 'left-side-text)
-                (null youtube-sub-extractor-timestamps))
-      (set-window-margins
-       nil
-       (when (eq youtube-sub-extractor-timestamps 'left-margin) 9)
-       (when (eq youtube-sub-extractor-timestamps 'right-margin) 9)))))
-
-;; ----------------------------------------------------------------------------------
 ;; emacs desktop notification center
 ;; ----------------------------------------------------------------------------------
 
@@ -1090,33 +1030,6 @@ minibuffer with something like `exit-minibuffer'."
     (elfeed-search-update :force)))
 
 (provide 'prot-elfeed)
-
-;; ----------------------------------------------------------------------------------
-;; app launcher
-;; ----------------------------------------------------------------------------------
-
-;; create a global keyboard shortcut with the following code
-;; emacsclient -e "(emacs-run-launcher)"
-
-(require 'app-launcher)
-
-;; app-launcher frame
-(defun emacs-run-launcher ()
-"Create and select a frame called emacs-run-launcher which consists only of a minibuffer and has specific dimensions. Run app-launcher-run-app on that frame, which is an emacs command that prompts you to select an app and open it in a dmenu like behaviour. Delete the frame after that command has exited"
-(interactive)
-(with-selected-frame (make-frame '((name . "emacs-run-launcher")
-(minibuffer . only)
-(auto-raise . t) ; focus on this frame
-(fullscreen . 0) ; no fullscreen
-(undecorated . t) ; remove title bar
-(tool-bar-lines . 0)
-(menu-bar-lines . 0)
-(internal-border-width . 4)
-(width . 70)
-(height . 11)))
-(unwind-protect
-(app-launcher-run-app)
-(delete-frame))))
 
 
 ;; ----------------------------------------------------------------------------------
