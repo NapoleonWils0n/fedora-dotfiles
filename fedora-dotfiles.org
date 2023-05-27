@@ -315,20 +315,22 @@ emacs --batch -l org --eval '(org-babel-tangle-file "~/git/ubuntu-dotfiles/ubunt
 (setq undo-tree-visualizer-diff t)
 
 (require 'openwith)
+;; nohup dont close launched programs when emacs quits
 (setq openwith-associations
       (list
        (list (openwith-make-extension-regexp
               '("mpg" "mpeg" "mp3" "mp4" "m4v"
                 "avi" "wmv" "wav" "mov" "flv"
                 "ogm" "ogg" "mkv" "webm"))
-             "mpv --fs --fs-screen=1"
+             "nohup 1>/dev/null 2>/dev/null mpv --fs --fs-screen=1"
              '(file))
        (list (openwith-make-extension-regexp
               '("pdf"))
-             "evince"
+             "nohup 1>/dev/null 2>/dev/null evince"
              '(file))))
 
 (openwith-mode 1)
+
 
 ;; ----------------------------------------------------------------------------------
 ;; tree-sitter
