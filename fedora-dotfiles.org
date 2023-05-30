@@ -139,7 +139,7 @@ emacs --batch -l org --eval '(org-babel-tangle-file "~/git/ubuntu-dotfiles/ubunt
  '(custom-safe-themes
    '("636b135e4b7c86ac41375da39ade929e2bd6439de8901f53f88fde7dd5ac3561" "" default))
  '(package-selected-packages
-   '(all-the-icons consult doom-themes doom-modeline ednc elfeed elfeed-org elfeed-tube elfeed-tube-mpv embark-consult emmet-mode evil-collection evil-leader evil-surround fd-dired flycheck git-commit git-auto-commit-mode hydra iedit magit magit-section marginalia mpv nerd-icons ob-async openwith orderless rg s shrink-path undo-tree vertico wgrep which-key yaml-mode))
+   '(all-the-icons doom-themes doom-modeline ednc elfeed elfeed-org elfeed-tube elfeed-tube-mpv embark-consult emmet-mode evil-collection evil-leader evil-surround fd-dired flycheck git-commit git-auto-commit-mode hydra iedit magit magit-section mpv nerd-icons ob-async openwith orderless rg s shrink-path undo-tree vertico wgrep which-key yaml-mode))
  '(warning-suppress-types '((comp)))
  '(youtube-sub-extractor-timestamps 'left-side-text))
 
@@ -688,6 +688,23 @@ emacs --batch -l org --eval '(org-babel-tangle-file "~/git/ubuntu-dotfiles/ubunt
 (org-babel-do-load-languages
 'org-babel-load-languages
 '((shell . t))) 
+
+;; org-mode image yank handler
+(yank-media-handler "image/.*" #'org-mode--image-yank-handler)
+
+;; org-mode insert image as file link from the clipboard
+(defun org-mode--image-yank-handler (type image)
+  (let ((file (read-file-name (format "Save %s image to: " type))))
+    (when (file-directory-p file)
+      (user-error "%s is a directory"))
+    (when (and (file-exists-p file)
+               (not (yes-or-no-p (format "%s exists; overwrite?" file))))
+      (user-error "%s exists"))
+    (with-temp-buffer
+      (set-buffer-multibyte nil)
+      (insert image)
+      (write-region (point-min) (point-max) file))
+    (insert (format "[[file:%s]]\n" (file-relative-name file)))))
 
 
 ;; ----------------------------------------------------------------------------------
