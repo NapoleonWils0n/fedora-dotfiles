@@ -3741,26 +3741,6 @@ ui = true
 
 ** desktop files
 *** desktop files config
-**** davinci resolve config
-
-#+NAME: davinci-resolve
-#+begin_src config
-[Desktop Entry]
-Version=1.0
-Type=Application
-Name=DaVinci Resolve
-GenericName=DaVinci Resolve
-Comment=Revolutionary new tools for editing, visual effects, color correction and professional audio post production, all in a single application!
-Path=/opt/resolve/
-Exec= env LD_PRELOAD=/usr/lib64/libglib-2.0.so __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia /opt/resolve/bin/resolve %u
-Terminal=false
-MimeType=application/x-resolveproj;
-Icon=/opt/resolve/graphics/DV_Resolve.png
-StartupNotify=true
-Name[en_US]=DaVinci Resolve
-
-#+end_src
-
 **** emacsclient config
 
 #+NAME: emacsclient
@@ -3790,22 +3770,6 @@ Exec=emacs %F
 #+END_SRC
 
 *** desktop files tangle
-**** davinci-resolve tangle
-
-+ home dir
-
-#+NAME: davinci-resolve-home-dir
-#+BEGIN_SRC conf :noweb yes :tangle "~/.local/share/applications/com.blackmagicdesign.resolve.desktop"
-<<davinci-resolve>>
-#+END_SRC
-
-+ current dir
-
-#+NAME: davinci-resolve-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle ".local/share/applications/com.blackmagicdesign.resolve.desktop"
-<<davinci-resolve>>
-#+END_SRC
-
 **** emacsclient tangle
 
 + home dir
