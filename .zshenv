@@ -2,7 +2,7 @@
 
 # Path
 typeset -U PATH path
-path=("$HOME/bin" "$path[@]")
+path=("$HOME/bin" "$HOME/.local/bin" "/usr/local/bin" "$path[@]")
 export PATH
 
 # xdg directories
