@@ -111,7 +111,7 @@
      '("636b135e4b7c86ac41375da39ade929e2bd6439de8901f53f88fde7dd5ac3561" "" default))
    '(package-selected-packages
      '(all-the-icons doom-themes doom-modeline ednc elfeed elfeed-org elfeed-tube elfeed-tube-mpv embark embark-consult emmet-mode evil-collection evil-leader evil-surround fd-dired flycheck git-commit git-auto-commit-mode hydra iedit magit-section marginalia mpv ob-async openwith orderless rg s shrink-path undo-tree vertico wgrep which-key yaml-mode))
-   '(warning-suppress-types '((comp)))
+   '(warning-suppress-types '((comp))))
 
   ;; require package
   (require 'package)
