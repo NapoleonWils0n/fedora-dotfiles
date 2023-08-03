@@ -286,18 +286,17 @@
 (setq undo-tree-visualizer-diff t)
 
 (require 'openwith)
-;; nohup dont close launched programs when emacs quits
 (setq openwith-associations
       (list
        (list (openwith-make-extension-regexp
               '("mpg" "mpeg" "mp3" "mp4" "m4v"
                 "avi" "wmv" "wav" "mov" "flv"
                 "ogm" "ogg" "mkv" "webm"))
-             "nohup 1>/dev/null 2>/dev/null mpv --fs --fs-screen=1"
-             '(file))
+          "mpv --fs --fs-screen=1"
+          '(file))
        (list (openwith-make-extension-regexp
               '("pdf"))
-             "nohup 1>/dev/null 2>/dev/null evince"
+             "evince"
              '(file))))
 
 (openwith-mode 1)
@@ -712,6 +711,10 @@
 ;; mpv.el
 ;; ----------------------------------------------------------------------------------
 
+;; mpv-default-options play fullscreen on second display
+(setq mpv-default-options '("--fs" "--fs-screen=1"))
+
+;; org-link-set-parameters
 (org-link-set-parameters "mpv" :follow #'mpv-play)
 (defun org-mpv-complete-link (&optional arg)
   (replace-regexp-in-string
