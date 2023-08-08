@@ -889,6 +889,7 @@ emacs --batch -l org --eval '(org-babel-tangle-file "~/git/ubuntu-dotfiles/ubunt
     "audio/mpeg"
     "audio/x-hx-aac-adts"
     "audio/mp4"
+    "audio/flac"
     "audio/ogg"))
 
 ;; subr-x

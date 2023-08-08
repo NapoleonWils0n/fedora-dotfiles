@@ -860,6 +860,7 @@
     "audio/mpeg"
     "audio/x-hx-aac-adts"
     "audio/mp4"
+    "audio/flac"
     "audio/ogg"))
 
 ;; subr-x
