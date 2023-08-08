@@ -111,7 +111,7 @@
  '(custom-safe-themes
    '("636b135e4b7c86ac41375da39ade929e2bd6439de8901f53f88fde7dd5ac3561" "" default))
  '(package-selected-packages
-   '(google-translate all-the-icons doom-themes ednc elfeed elfeed-org elfeed-tube elfeed-tube-mpv embark-consult emmet-mode evil-collection evil-leader evil-surround fd-dired flycheck git-auto-commit-mode hydra iedit marginalia mpv ob-async openwith rg s shrink-path undo-tree vertico wgrep which-key yaml-mode))
+   '(google-translate all-the-icons doom-themes ednc elfeed-org elfeed-tube elfeed-tube-mpv embark-consult emmet-mode evil-collection evil-leader evil-surround fd-dired flycheck git-auto-commit-mode hydra iedit mpv ob-async openwith rg s shrink-path undo-tree vertico wgrep which-key yaml-mode))
  '(warning-suppress-types '((comp))))
 
 ;; require package
@@ -262,7 +262,7 @@
 (evil-collection-define-key 'normal 'dired-mode-map
     "e" 'dired-find-file
     "h" 'dired-up-directory
-    "l" 'dired-find-file)
+    "l" 'dired-find-file-mpv)
 
 
 ;; ----------------------------------------------------------------------------------
@@ -285,22 +285,21 @@
 (setq undo-tree-visualizer-timestamps t)
 (setq undo-tree-visualizer-diff t)
 
-(require 'openwith)
-(setq openwith-associations
-      (list
-       (list (openwith-make-extension-regexp
-              '("mpg" "mpeg" "mp3" "mp4" "m4v"
-                "avi" "wmv" "wav" "mov" "flv"
-                "ogm" "ogg" "mkv" "webm"))
-          "mpv --fs --fs-screen=1"
-          '(file))
-       (list (openwith-make-extension-regexp
-              '("pdf"))
-             "evince"
-             '(file))))
-
-(openwith-mode 1)
-
+;;(require 'openwith)
+;;(setq openwith-associations
+;;      (list
+;;;;       (list (openwith-make-extension-regexp
+;;;;              '("mpg" "mpeg" "mp3" "mp4" "m4v"
+;;;;                "avi" "wmv" "wav" "mov" "flv"
+;;;;                "ogm" "ogg" "mkv" "webm"))
+;;;;          "mpv --fs --fs-screen=1"
+;;;;          '(file))
+;;       (list (openwith-make-extension-regexp
+;;              '("pdf"))
+;;             "evince"
+;;             '(file))))
+;;
+;;(openwith-mode 1)
 
 ;; ----------------------------------------------------------------------------------
 ;; tree-sitter
@@ -844,6 +843,56 @@
   (interactive)
   (end-of-line)
   (newline-and-indent))
+
+
+;; ----------------------------------------------------------------------------------
+;; mpv dired
+;; ----------------------------------------------------------------------------------
+
+;; video and audio mime types
+(defvar supported-mime-types
+  '("video/quicktime"
+    "video/x-matroska"
+    "video/mp4"
+    "video/webm"
+    "video/x-m4v"
+    "audio/x-wav"
+    "audio/mpeg"
+    "audio/x-hx-aac-adts"
+    "audio/mp4"
+    "audio/ogg"))
+
+;; subr-x
+(load "subr-x")
+
+;; get files mime type
+(defun get-mimetype (filepath)
+  (interactive)
+  (string-trim
+   (shell-command-to-string (concat "file -b --mime-type "
+                                    (shell-quote-argument filepath)))))
+
+;; dired-find-file-mpv
+(defun dired-find-file-mpv ()
+  "Start an mpv process playing the file at PATH,
+   and append any subsequent files to the playlist"
+  (interactive)
+  (let ((file (dired-get-file-for-visit)))
+    (if (member (get-mimetype file) supported-mime-types)
+        (mpv-play-dired file)
+      (dired-find-file))))
+
+
+;; mpv-play-dired
+(with-eval-after-load 'mpv
+  (defun mpv-play-dired (path)
+    "Start an mpv process playing the file at PATH,
+     and append any subsequent files to the playlist"
+    (if (not mpv--process)
+        ;; mpv isnt running play file
+        (mpv-start (expand-file-name path))
+        ;; mpv running append file to playlist
+      (mpv--playlist-append (expand-file-name path)))))
 
 
 ;; ----------------------------------------------------------------------------------
