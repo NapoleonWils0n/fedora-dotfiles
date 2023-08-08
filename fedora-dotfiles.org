@@ -939,6 +939,9 @@ emacs --batch -l org --eval '(org-babel-tangle-file "~/git/ubuntu-dotfiles/ubunt
     (mpv--playlist-append url))))
 
 
+(evil-collection-define-key 'normal 'eww-mode-map
+    "l" 'mpv-play-eww)
+
 ;; ----------------------------------------------------------------------------------
 ;; hydra
 ;; ----------------------------------------------------------------------------------
