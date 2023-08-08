@@ -867,7 +867,6 @@
 
 ;; get files mime type
 (defun get-mimetype (filepath)
-  (interactive)
   (string-trim
    (shell-command-to-string (concat "file -b --mime-type "
                                     (shell-quote-argument filepath)))))
