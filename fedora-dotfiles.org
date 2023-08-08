@@ -903,8 +903,7 @@ emacs --batch -l org --eval '(org-babel-tangle-file "~/git/ubuntu-dotfiles/ubunt
 
 ;; dired-find-file-mpv
 (defun dired-find-file-mpv ()
-  "Start an mpv process playing the file at PATH,
-   and append any subsequent files to the playlist"
+  "Start an mpv process playing the file at PATH append subsequent files to the playlist"
   (interactive)
   (let ((file (dired-get-file-for-visit)))
     (if (member (get-mimetype file) supported-mime-types)
@@ -915,13 +914,29 @@ emacs --batch -l org --eval '(org-babel-tangle-file "~/git/ubuntu-dotfiles/ubunt
 ;; mpv-play-dired
 (with-eval-after-load 'mpv
   (defun mpv-play-dired (path)
-    "Start an mpv process playing the file at PATH,
-     and append any subsequent files to the playlist"
+  "Start an mpv process playing the file at PATH append subsequent files to the playlist"
     (if (not mpv--process)
         ;; mpv isnt running play file
         (mpv-start (expand-file-name path))
         ;; mpv running append file to playlist
       (mpv--playlist-append (expand-file-name path)))))
+
+
+;; ----------------------------------------------------------------------------------
+;; mpv eww
+;; ----------------------------------------------------------------------------------
+
+(defun mpv-play-eww ()
+  "Start an mpv process playing the video stream at URL."
+  (interactive)
+  (let ((url (shr-url-at-point current-prefix-arg)))
+  (unless (mpv--url-p url)
+    (user-error "Invalid argument: `%s' (must be a valid URL)" url))
+  (if (not mpv--process)
+      ;; mpv isnt running play file
+      (mpv-start url)
+      ;; mpv running append file to playlist
+    (mpv--playlist-append url))))
 
 
 ;; ----------------------------------------------------------------------------------
