@@ -111,7 +111,7 @@
  '(custom-safe-themes
    '("636b135e4b7c86ac41375da39ade929e2bd6439de8901f53f88fde7dd5ac3561" "" default))
  '(package-selected-packages
-   '(google-translate all-the-icons doom-themes ednc elfeed-org elfeed-tube elfeed-tube-mpv embark-consult emmet-mode evil-collection evil-leader evil-surround fd-dired flycheck git-auto-commit-mode hydra iedit mpv ob-async openwith rg s shrink-path undo-tree vertico wgrep which-key yaml-mode))
+   '(evil-collection google-translate all-the-icons doom-themes ednc elfeed-org elfeed-tube elfeed-tube-mpv embark-consult emmet-mode evil-leader evil-surround fd-dired flycheck git-auto-commit-mode hydra iedit mpv ob-async openwith rg s shrink-path undo-tree vertico wgrep which-key yaml-mode))
  '(warning-suppress-types '((comp))))
 
 ;; require package
@@ -506,6 +506,10 @@
 ;; dired hide aync output buffer
 (add-to-list 'display-buffer-alist (cons "\\*Async Shell Command\\*.*" (cons #'display-buffer-no-window nil)))
 
+;; ob-async sentinel fix
+(defun no-hide-overlays (orig-fun &rest args)
+(setq org-babel-hide-result-overlays nil))
+(advice-add 'ob-async-org-babel-execute-src-block :before #'no-hide-overlays)
 
 ;; ----------------------------------------------------------------------------------
 ;; dired-fd
