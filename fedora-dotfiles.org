@@ -2322,7 +2322,7 @@ vo=gpu
 hwdec=vaapi
 
 # hide: GNOME's wayland compositor lacks support for the idle inhibit protocol. 
-msg-level=vo/gpu/wayland=no
+msg-level=ffmpeg=fatal,vo/gpu/wayland=no
 
 # cache no for internet streams
 cache=no
