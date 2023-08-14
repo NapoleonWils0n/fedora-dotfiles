@@ -111,7 +111,7 @@
  '(custom-safe-themes
    '("636b135e4b7c86ac41375da39ade929e2bd6439de8901f53f88fde7dd5ac3561" "" default))
  '(package-selected-packages
-   '(evil-collection google-translate all-the-icons doom-themes ednc elfeed-org elfeed-tube elfeed-tube-mpv embark-consult emmet-mode evil-leader evil-surround fd-dired git-auto-commit-mode hydra iedit mpv ob-async openwith rg s shrink-path undo-tree vertico wgrep which-key yaml-mode))
+   '(evil-collection google-translate all-the-icons doom-themes ednc elfeed-org elfeed-tube elfeed-tube-mpv embark-consult emmet-mode evil-leader fd-dired git-auto-commit-mode hydra iedit mpv ob-async openwith rg s shrink-path undo-tree vertico wgrep which-key yaml-mode))
  '(warning-suppress-types '((comp))))
 
 ;; require package
@@ -1017,7 +1017,7 @@
 
 ;; mpv play fullscreen on second display
 (setq elfeed-tube-mpv-options
-  '("--cache=yes" "--force-window=yes" "--fs" "--fs-screen=1"))
+  '("--force-window=yes" "--fs" "--fs-screen=1"))
 
 ; elfeed evil
 (add-to-list 'evil-motion-state-modes 'elfeed-search-mode)
