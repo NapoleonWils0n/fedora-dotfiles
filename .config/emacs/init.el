@@ -880,6 +880,7 @@
     "video/mp4"
     "video/webm"
     "video/x-m4v"
+    "video/x-msvideo"
     "audio/x-wav"
     "audio/mpeg"
     "audio/x-hx-aac-adts"
