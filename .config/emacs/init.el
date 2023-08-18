@@ -938,6 +938,23 @@
 (evil-collection-define-key 'normal 'eww-mode-map
     "l" 'mpv-play-eww)
 
+
+;; ----------------------------------------------------------------------------------
+;; eww pinch
+;; ----------------------------------------------------------------------------------
+
+(defun eww-pinch ()
+  "Send the url under the point to mpd with pinch"
+  (interactive)
+  (let ((url (shr-url-at-point current-prefix-arg)))
+    (async-shell-command (concat
+                    "pinch -i " (shell-quote-argument url)))))
+
+
+(evil-collection-define-key 'normal 'eww-mode-map
+    "n" 'eww-pinch)
+
+
 ;; ----------------------------------------------------------------------------------
 ;; hydra
 ;; ----------------------------------------------------------------------------------
