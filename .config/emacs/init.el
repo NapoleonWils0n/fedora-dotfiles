@@ -956,6 +956,22 @@
 
 
 ;; ----------------------------------------------------------------------------------
+;; eww taskspooler yt-dlp
+;; ----------------------------------------------------------------------------------
+
+(defun eww-yt-dlp ()
+  "Send the url under the point to taskspooler and yt-dlp"
+  (interactive)
+  (let ((url (shr-url-at-point current-prefix-arg)))
+    (async-shell-command (concat
+                    "tsp yt-dlp -P ${HOME}/Downloads " (shell-quote-argument url)))))
+
+
+(evil-collection-define-key 'normal 'eww-mode-map
+    "x" 'eww-yt-dlp)
+
+
+;; ----------------------------------------------------------------------------------
 ;; hydra
 ;; ----------------------------------------------------------------------------------
 
