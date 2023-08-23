@@ -429,6 +429,11 @@
 
 (setq completion-in-region-function #'consult-completion-in-region)
 
+;; consult-yank-pop
+(global-set-key (kbd "M-y") 'consult-yank-pop)
+
+;; It lets you use a new minibuffer when you're in the minibuffer
+(setq enable-recursive-minibuffers t)
 
 ;;; Orderless
 
