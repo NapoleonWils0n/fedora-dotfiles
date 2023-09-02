@@ -930,6 +930,17 @@
       (mpv--playlist-append (expand-file-name path)))))
 
 
+;; mpv play dired marked files
+(defun mpv-play-marked-files ()
+  "Play marked files with mpv"
+  (interactive)
+  (mapc 'mpv-play-dired (dired-get-marked-files nil nil nil t)))
+
+;; mpv dired embark
+(with-eval-after-load 'embark
+  (define-key embark-file-map "l" #'mpv-play-marked-files))
+
+
 ;; ----------------------------------------------------------------------------------
 ;; mpv eww
 ;; ----------------------------------------------------------------------------------
