@@ -111,7 +111,7 @@
  '(custom-safe-themes
    '("636b135e4b7c86ac41375da39ade929e2bd6439de8901f53f88fde7dd5ac3561" "" default))
  '(package-selected-packages
-   '(evil-collection google-translate all-the-icons doom-themes ednc elfeed-org elfeed-tube elfeed-tube-mpv embark-consult emmet-mode evil-leader fd-dired git-auto-commit-mode hydra iedit mpv ob-async openwith rg s shrink-path undo-tree vertico wgrep which-key yaml-mode))
+   '(async evil-collection google-translate all-the-icons doom-themes ednc elfeed-org elfeed-tube elfeed-tube-mpv embark-consult emmet-mode evil-leader fd-dired git-auto-commit-mode hydra iedit mpv ob-async openwith rg s shrink-path undo-tree vertico wgrep which-key yaml-mode))
  '(warning-suppress-types '((comp))))
 
 ;; require package
@@ -127,6 +127,9 @@
   (package-refresh-contents))
 (package-install-selected-packages)
 
+;; emacs aysnc - asynchronous compilation of your (M)elpa packages
+(async-bytecomp-package-mode 1)
+(setq async-bytecomp-allowed-packages '(all))
 
 ;; ----------------------------------------------------------------------------------
 ;; general settings
@@ -486,6 +489,10 @@
 
 ;; Toggle Hidden Files in Emacs dired with C-x M-o
 (require 'dired-x)
+
+;; dired-async
+(autoload 'dired-async-mode "dired-async.el" nil t)
+(dired-async-mode 1)
 
 ;; kill the current buffer when selecting a new directory to display
 (setq dired-kill-when-opening-new-dired-buffer t)
