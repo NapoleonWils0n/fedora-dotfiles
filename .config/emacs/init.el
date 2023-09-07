@@ -372,9 +372,6 @@
 ;; eww browser text width
 (setq shr-width 80)
 
-;; emacs 28 - dictionary server
-(setq dictionary-server "dict.org")
-
 ;; company auto complete
 (setq company-idle-delay 0)
 (setq company-minimum-prefix-length 3)
@@ -385,6 +382,20 @@
 
 ;; disable ring bell
 (setq ring-bell-function 'ignore)
+
+
+;; ----------------------------------------------------------------------------------
+;; emacs 28 - dictionary server
+;; ----------------------------------------------------------------------------------
+
+(setq dictionary-server "dict.org")
+
+;; mandatory, as the dictionary misbehaves!
+(setq switch-to-buffer-obey-display-actions t)
+(add-to-list 'display-buffer-alist
+   '("^\\*Dictionary\\*" display-buffer-in-side-window
+     (side . right)
+     (window-width . 0.50)))
 
 
 ;; ----------------------------------------------------------------------------------
