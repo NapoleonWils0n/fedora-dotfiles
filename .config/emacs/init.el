@@ -1061,6 +1061,16 @@
 (ednc-mode 1)
 
 ;; open notications
+;;(defun show-notification-in-buffer (old new)
+;;  (let ((name (format "Notification %d" (ednc-notification-id (or old new)))))
+;;    (with-current-buffer (get-buffer-create name)
+;;      (if new (let ((inhibit-read-only t))
+;;                (if old (erase-buffer) (ednc-view-mode))
+;;                (insert (ednc-format-notification new t))
+;;                (pop-to-buffer (current-buffer)))
+;;        (kill-buffer)))))
+
+
 (defun show-notification-in-buffer (old new)
   (let ((name (format "Notification %d" (ednc-notification-id (or old new)))))
     (with-current-buffer (get-buffer-create name)
@@ -1075,6 +1085,12 @@
 (add-hook 'ednc-notification-presentation-functions
           #'show-notification-in-buffer)
 
+;; open notifications in side window
+(setq switch-to-buffer-obey-display-actions t)
+(add-to-list 'display-buffer-alist
+   '("^Notification *" display-buffer-in-side-window
+     (side . right)
+     (window-width . 0.50)))
 
 ;; ednc evil - normal mode
 (defun noevil ()
