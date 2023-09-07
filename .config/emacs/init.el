@@ -373,7 +373,7 @@
 (setq shr-width 80)
 
 ;; emacs 28 - dictionary server
-;;(setq dictionary-server "dict.org")
+(setq dictionary-server "dict.org")
 
 ;; company auto complete
 (setq company-idle-delay 0)
