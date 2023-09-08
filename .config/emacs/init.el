@@ -390,6 +390,8 @@
 ;; disable ring bell
 (setq ring-bell-function 'ignore)
 
+;; side windows
+(setq switch-to-buffer-obey-display-actions t)
 
 ;; ----------------------------------------------------------------------------------
 ;; emacs 28 - dictionary server
@@ -398,7 +400,6 @@
 (setq dictionary-server "dict.org")
 
 ;; mandatory, as the dictionary misbehaves!
-(setq switch-to-buffer-obey-display-actions t)
 (add-to-list 'display-buffer-alist
    '("^\\*Dictionary\\*" display-buffer-in-side-window
      (side . right)
