@@ -491,6 +491,8 @@
 ;; press M-/ and invoke hippie-expand
 (keymap-global-set "M-/" 'hippie-expand)
 
+;; window-toggle-side-windows
+(keymap-global-set "C-x x w" 'window-toggle-side-windows)
 
 ;; ----------------------------------------------------------------------------------
 ;; keymap-set
