@@ -318,6 +318,13 @@
              '(sh-mode . bash-ts-mode))
 
 
+;; treesitter explore open in side window
+(add-to-list 'display-buffer-alist
+   '("^*tree-sitter explorer *" display-buffer-in-side-window
+     (side . right)
+     (window-width . 0.40)))
+
+
 ;; ----------------------------------------------------------------------------------
 ;; setq
 ;; ----------------------------------------------------------------------------------
@@ -1075,7 +1082,6 @@
           #'show-notification-in-buffer)
 
 ;; open notifications in side window
-(setq switch-to-buffer-obey-display-actions t)
 (add-to-list 'display-buffer-alist
    '("^Notification *" display-buffer-in-side-window
      (side . right)
