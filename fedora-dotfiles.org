@@ -140,7 +140,7 @@ emacs --batch -l org --eval '(org-babel-tangle-file "~/git/ubuntu-dotfiles/ubunt
  '(custom-safe-themes
    '("636b135e4b7c86ac41375da39ade929e2bd6439de8901f53f88fde7dd5ac3561" "" default))
  '(package-selected-packages
-   '(async evil-collection google-translate all-the-icons doom-themes ednc elfeed-org elfeed-tube elfeed-tube-mpv embark-consult emmet-mode evil-leader fd-dired git-auto-commit-mode hydra iedit mpv ob-async openwith rg s shrink-path undo-tree vertico wgrep which-key yaml-mode))
+   '(async evil-collection google-translate all-the-icons ednc elfeed-org elfeed-tube elfeed-tube-mpv embark-consult emmet-mode evil-leader fd-dired git-auto-commit-mode hydra iedit mpv ob-async openwith rg s shrink-path undo-tree vertico wgrep which-key yaml-mode))
  '(warning-suppress-types '((comp))))
 
 ;; require package
@@ -1088,17 +1088,6 @@ emacs --batch -l org --eval '(org-babel-tangle-file "~/git/ubuntu-dotfiles/ubunt
 
 ;; start ednc-mode
 (ednc-mode 1)
-
-;; open notications
-;;(defun show-notification-in-buffer (old new)
-;;  (let ((name (format "Notification %d" (ednc-notification-id (or old new)))))
-;;    (with-current-buffer (get-buffer-create name)
-;;      (if new (let ((inhibit-read-only t))
-;;                (if old (erase-buffer) (ednc-view-mode))
-;;                (insert (ednc-format-notification new t))
-;;                (pop-to-buffer (current-buffer)))
-;;        (kill-buffer)))))
-
 
 (defun show-notification-in-buffer (old new)
   (let ((name (format "Notification %d" (ednc-notification-id (or old new)))))
