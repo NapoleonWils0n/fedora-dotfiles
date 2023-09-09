@@ -663,7 +663,7 @@
     '(("w" "web site" entry
       (file+olp "~/git/personal/bookmarks/bookmarks.org" "sites")
       "** [[%c][%^{link-description}]]"
-       :prepend t)))
+       :empty-lines-after 1)))
 
 ;; refile
 (setq org-refile-targets '((nil :maxlevel . 2)
