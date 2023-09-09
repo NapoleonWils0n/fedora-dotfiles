@@ -416,6 +416,11 @@
   (interactive)
   (setq kill-ring nil))
 
+;; reload init.el
+(defun my-reload-emacs-configuration ()
+  (interactive)
+  (load-file "~/.config/emacs/init.el"))
+
 
 ;; ----------------------------------------------------------------------------------
 ;; completion
