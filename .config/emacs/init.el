@@ -393,6 +393,19 @@
 ;; side windows
 (setq switch-to-buffer-obey-display-actions t)
 
+;; hippie expand
+(setq hippie-expand-try-functions-list
+      '(try-expand-all-abbrevs
+        try-complete-file-name-partially
+        try-complete-file-name
+        try-expand-dabbrev
+        try-expand-dabbrev-from-kill
+        try-expand-dabbrev-all-buffers
+        try-expand-list
+        try-expand-line
+        try-complete-lisp-symbol-partially
+        try-complete-lisp-symbol))
+
 ;; ----------------------------------------------------------------------------------
 ;; emacs 28 - dictionary server
 ;; ----------------------------------------------------------------------------------
@@ -417,7 +430,8 @@
   (setq kill-ring nil))
 
 ;; reload init.el
-(defun my-reload-emacs-configuration ()
+(defun my-reload-init ()
+  "reload init.el"
   (interactive)
   (load-file "~/.config/emacs/init.el"))
 
@@ -648,8 +662,8 @@
 (setq org-capture-templates
     '(("w" "web site" entry
       (file+olp "~/git/personal/bookmarks/bookmarks.org" "sites")
-      (file "~/git/personal/bookmarks/templates/tpl-web.txt")
-       :empty-lines-before 1)))
+      "** [[%c][%^{link-description}]]"
+       :prepend t)))
 
 ;; refile
 (setq org-refile-targets '((nil :maxlevel . 2)
