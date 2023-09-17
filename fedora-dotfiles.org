@@ -2506,7 +2506,7 @@ profile-cond=path:find('http://127.0.0.1:3000') ~= nil
 # include hwdec profile 
 profile=hwdec
 # override hwdec profile cache setting
-cache=auto
+cache=no
 # fullscreen 2nd display
 fs
 fs-screen=1
