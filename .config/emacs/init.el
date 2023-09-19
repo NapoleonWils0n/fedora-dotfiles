@@ -615,8 +615,10 @@
                                '((tramp-parse-sconfig "/etc/ssh_config")
                                  (tramp-parse-sconfig "~/.ssh/config")))
 
-;; set tramp shell to sh to avoid zsh problems
-(with-eval-after-load 'tramp '(setenv "SHELL" "/bin/sh"))
+;; set tramp shell to bash to avoid zsh problems
+(setenv "SHELL" "/usr/bin/bash")
+(customize-set-variable 'tramp-default-user "root")
+(setq tramp-allow-unsafe-temporary-files t)
 
 ;; tramp backup directory
 (add-to-list 'backup-directory-alist (cons tramp-file-name-regexp nil))
