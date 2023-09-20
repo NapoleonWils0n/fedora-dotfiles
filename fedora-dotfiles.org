@@ -3292,7 +3292,8 @@ Exec=firefox --ProfileManager
 #+NAME: transmission-vpn
 #+BEGIN_SRC conf
 [Desktop Entry]
-Name[an]=Transmission - vpn
+Name=Transmission-vpn
+Name[an]=Transmission
 Name[ar]=ترانزميشن
 Name[ast]=Transmission
 Name[be]=Transmission
@@ -3363,7 +3364,6 @@ Name[vi]=Transmission
 Name[zh_CN]=Transmission
 Name[zh_HK]=Transmission
 Name[zh_TW]=Transmission
-Name=Transmission
 GenericName[ar]=عميل «بت تورنت»
 GenericName[ast]=Veceru de BitTorrent
 GenericName[be]=Кліент BitTorrent
@@ -3540,7 +3540,7 @@ Keywords=torrents;downloading;uploading;share;sharing;
 Exec=doas namespace transmission-gtk %U
 Icon=transmission
 Terminal=false
-TryExec=doas namespace transmission-gtk
+TryExec=transmission-gtk
 Type=Application
 StartupNotify=true
 MimeType=application/x-bittorrent;x-scheme-handler/magnet;
