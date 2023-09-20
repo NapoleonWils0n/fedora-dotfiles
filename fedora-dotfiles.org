@@ -3003,6 +3003,684 @@ Name=New Instance
 Exec=emacs %F
 #+END_SRC
 
+**** firefox-vpn config
+
+#+NAME: firefox-vpn
+#+BEGIN_SRC conf
+[Desktop Entry]
+Version=1.0
+Name=Firefox - vpn
+GenericName=Web Browser
+GenericName[ca]=Navegador web
+GenericName[cs]=Webový prohlížeč
+GenericName[es]=Navegador web
+GenericName[fa]=مرورگر اینترنتی
+GenericName[fi]=WWW-selain
+GenericName[fr]=Navigateur Web
+GenericName[hu]=Webböngésző
+GenericName[it]=Browser Web
+GenericName[ja]=ウェブ・ブラウザ
+GenericName[ko]=웹 브라우저
+GenericName[nb]=Nettleser
+GenericName[nl]=Webbrowser
+GenericName[nn]=Nettlesar
+GenericName[no]=Nettleser
+GenericName[pl]=Przeglądarka WWW
+GenericName[pt]=Navegador Web
+GenericName[pt_BR]=Navegador Web
+GenericName[sk]=Internetový prehliadač
+GenericName[sv]=Webbläsare
+Comment=Browse the Web
+Comment[ca]=Navegueu per el web
+Comment[cs]=Prohlížení stránek World Wide Webu
+Comment[de]=Im Internet surfen
+Comment[es]=Navegue por la web
+Comment[fa]=صفحات شبکه جهانی اینترنت را مرور نمایید
+Comment[fi]=Selaa Internetin WWW-sivuja
+Comment[fr]=Navigue sur Internet
+Comment[hu]=A világháló böngészése
+Comment[it]=Esplora il web
+Comment[ja]=ウェブを閲覧します
+Comment[ko]=웹을 돌아 다닙니다
+Comment[nb]=Surf på nettet
+Comment[nl]=Verken het internet
+Comment[nn]=Surf på nettet
+Comment[no]=Surf på nettet
+Comment[pl]=Przeglądanie stron WWW
+Comment[pt]=Navegue na Internet
+Comment[pt_BR]=Navegue na Internet
+Comment[sk]=Prehliadanie internetu
+Comment[sv]=Surfa på webben
+Exec=doas namespace /usr/local/bin/firefox-netns %u
+Icon=firefox
+Terminal=false
+Type=Application
+MimeType=text/html;text/xml;application/xhtml+xml;application/vnd.mozilla.xul+xml;text/mml;x-scheme-handler/http;x-scheme-handler/https;
+StartupNotify=true
+Categories=Network;WebBrowser;
+Keywords=web;browser;internet;
+Actions=new-window;new-private-window;profile-manager-window;
+
+X-Desktop-File-Install-Version=0.26
+
+[Desktop Action new-window]
+Name=Open a New Window
+Name[ach]=Dirica manyen
+Name[af]=Nuwe venster
+Name[an]=Nueva finestra
+Name[ar]=نافذة جديدة
+Name[as]=নতুন উইন্ডো
+Name[ast]=Ventana nueva
+Name[az]=Yeni Pəncərə
+Name[be]=Новае акно
+Name[bg]=Нов прозорец
+Name[bn_BD]=নতুন উইন্ডো (N)
+Name[bn_IN]=নতুন উইন্ডো
+Name[br]=Prenestr nevez
+Name[brx]=गोदान उइन्ड'(N)
+Name[bs]=Novi prozor
+Name[ca]=Finestra nova
+Name[cak]=K'ak'a' tzuwäch
+Name[cs]=Nové okno
+Name[cy]=Ffenestr Newydd
+Name[da]=Nyt vindue
+Name[de]=Neues Fenster
+Name[dsb]=Nowe wokno
+Name[el]=Νέο παράθυρο
+Name[en_GB]=New Window
+Name[en_US]=New Window
+Name[en_ZA]=New Window
+Name[eo]=Nova fenestro
+Name[es_AR]=Nueva ventana
+Name[es_CL]=Nueva ventana
+Name[es_ES]=Nueva ventana
+Name[es_MX]=Nueva ventana
+Name[et]=Uus aken
+Name[eu]=Leiho berria
+Name[fa]=پنجره جدید‌
+Name[ff]=Henorde Hesere
+Name[fi]=Uusi ikkuna
+Name[fr]=Nouvelle fenêtre
+Name[fy_NL]=Nij finster
+Name[ga_IE]=Fuinneog Nua
+Name[gd]=Uinneag ùr
+Name[gl]=Nova xanela
+Name[gn]=Ovetã pyahu
+Name[gu_IN]=નવી વિન્ડો
+Name[he]=חלון חדש
+Name[hi_IN]=नया विंडो
+Name[hr]=Novi prozor
+Name[hsb]=Nowe wokno
+Name[hu]=Új ablak
+Name[hy_AM]=Նոր Պատուհան
+Name[id]=Jendela Baru
+Name[is]=Nýr gluggi
+Name[it]=Nuova finestra
+Name[ja]=新しいウィンドウ
+Name[ja_JP-mac]=新規ウインドウ
+Name[ka]=ახალი ფანჯარა
+Name[kk]=Жаңа терезе
+Name[km]=បង្អួច​​​ថ្មី
+Name[kn]=ಹೊಸ ಕಿಟಕಿ
+Name[ko]=새 창
+Name[kok]=नवें जनेल
+Name[ks]=نئئ وِنڈو
+Name[lij]=Neuvo barcon
+Name[lo]=ຫນ້າຕ່າງໃຫມ່
+Name[lt]=Naujas langas
+Name[ltg]=Jauns lūgs
+Name[lv]=Jauns logs
+Name[mai]=नव विंडो
+Name[mk]=Нов прозорец
+Name[ml]=പുതിയ ജാലകം
+Name[mr]=नवीन पटल
+Name[ms]=Tetingkap Baru
+Name[my]=ဝင်းဒိုးအသစ်
+Name[nb_NO]=Nytt vindu
+Name[ne_NP]=नयाँ सञ्झ्याल
+Name[nl]=Nieuw venster
+Name[nn_NO]=Nytt vindauge
+Name[or]=ନୂତନ ୱିଣ୍ଡୋ
+Name[pa_IN]=ਨਵੀਂ ਵਿੰਡੋ
+Name[pl]=Nowe okno
+Name[pt_BR]=Nova janela
+Name[pt_PT]=Nova janela
+Name[rm]=Nova fanestra
+Name[ro]=Fereastră nouă
+Name[ru]=Новое окно
+Name[sat]=नावा विंडो (N)
+Name[si]=නව කවුළුවක්
+Name[sk]=Nové okno
+Name[sl]=Novo okno
+Name[son]=Zanfun taaga
+Name[sq]=Dritare e Re
+Name[sr]=Нови прозор
+Name[sv_SE]=Nytt fönster
+Name[ta]=புதிய சாளரம்
+Name[te]=కొత్త విండో
+Name[th]=หน้าต่างใหม่
+Name[tr]=Yeni pencere
+Name[tsz]=Eraatarakua jimpani
+Name[uk]=Нове вікно
+Name[ur]=نیا دریچہ
+Name[uz]=Yangi oyna
+Name[vi]=Cửa sổ mới
+Name[wo]=Palanteer bu bees
+Name[xh]=Ifestile entsha
+Name[zh_CN]=新建窗口
+Name[zh_TW]=開新視窗
+Exec=doas namespace /usr/local/bin/firefox-netns -new-window %u
+
+[Desktop Action new-private-window]
+Name=Open a New Private Window
+Name[ach]=Dirica manyen me mung
+Name[af]=Nuwe privaatvenster
+Name[an]=Nueva finestra privada
+Name[ar]=نافذة خاصة جديدة
+Name[as]=নতুন ব্যক্তিগত উইন্ডো
+Name[ast]=Ventana privada nueva
+Name[az]=Yeni Məxfi Pəncərə
+Name[be]=Новае акно адасаблення
+Name[bg]=Нов прозорец за поверително сърфиране
+Name[bn_BD]=নতুন ব্যক্তিগত উইন্ডো
+Name[bn_IN]=নতুন ব্যক্তিগত উইন্ডো
+Name[br]=Prenestr merdeiñ prevez nevez
+Name[brx]=गोदान प्राइभेट उइन्ड'
+Name[bs]=Novi privatni prozor
+Name[ca]=Finestra privada nova
+Name[cak]=K'ak'a' ichinan tzuwäch
+Name[cs]=Nové anonymní okno
+Name[cy]=Ffenestr Breifat Newydd
+Name[da]=Nyt privat vindue
+Name[de]=Neues privates Fenster
+Name[dsb]=Nowe priwatne wokno
+Name[el]=Νέο παράθυρο ιδιωτικής περιήγησης
+Name[en_GB]=New Private Window
+Name[en_US]=New Private Window
+Name[en_ZA]=New Private Window
+Name[eo]=Nova privata fenestro
+Name[es_AR]=Nueva ventana privada
+Name[es_CL]=Nueva ventana privada
+Name[es_ES]=Nueva ventana privada
+Name[es_MX]=Nueva ventana privada
+Name[et]=Uus privaatne aken
+Name[eu]=Leiho pribatu berria
+Name[fa]=پنجره ناشناس جدید
+Name[ff]=Henorde Suturo Hesere
+Name[fi]=Uusi yksityinen ikkuna
+Name[fr]=Nouvelle fenêtre de navigation privée
+Name[fy_NL]=Nij priveefinster
+Name[ga_IE]=Fuinneog Nua Phríobháideach
+Name[gd]=Uinneag phrìobhaideach ùr
+Name[gl]=Nova xanela privada
+Name[gn]=Ovetã ñemi pyahu
+Name[gu_IN]=નવી ખાનગી વિન્ડો
+Name[he]=חלון פרטי חדש
+Name[hi_IN]=नयी निजी विंडो
+Name[hr]=Novi privatni prozor
+Name[hsb]=Nowe priwatne wokno
+Name[hu]=Új privát ablak
+Name[hy_AM]=Սկսել Գաղտնի դիտարկում
+Name[id]=Jendela Mode Pribadi Baru
+Name[is]=Nýr huliðsgluggi
+Name[it]=Nuova finestra anonima
+Name[ja]=新しいプライベートウィンドウ
+Name[ja_JP-mac]=新規プライベートウインドウ
+Name[ka]=ახალი პირადი ფანჯარა
+Name[kk]=Жаңа жекелік терезе
+Name[km]=បង្អួច​ឯកជន​ថ្មី
+Name[kn]=ಹೊಸ ಖಾಸಗಿ ಕಿಟಕಿ
+Name[ko]=새 사생활 보호 모드
+Name[kok]=नवो खाजगी विंडो
+Name[ks]=نْو پرایوٹ وینڈو&amp;
+Name[lij]=Neuvo barcon privou
+Name[lo]=ເປີດຫນ້າຕ່າງສວນຕົວຂື້ນມາໃຫມ່
+Name[lt]=Naujas privataus naršymo langas
+Name[ltg]=Jauns privatais lūgs
+Name[lv]=Jauns privātais logs
+Name[mai]=नया निज विंडो (W)
+Name[mk]=Нов приватен прозорец
+Name[ml]=പുതിയ സ്വകാര്യ ജാലകം
+Name[mr]=नवीन वैयक्तिक पटल
+Name[ms]=Tetingkap Persendirian Baharu
+Name[my]=New Private Window
+Name[nb_NO]=Nytt privat vindu
+Name[ne_NP]=नयाँ निजी सञ्झ्याल
+Name[nl]=Nieuw privévenster
+Name[nn_NO]=Nytt privat vindauge
+Name[or]=ନୂତନ ବ୍ୟକ୍ତିଗତ ୱିଣ୍ଡୋ
+Name[pa_IN]=ਨਵੀਂ ਪ੍ਰਾਈਵੇਟ ਵਿੰਡੋ
+Name[pl]=Nowe okno prywatne
+Name[pt_BR]=Nova janela privativa
+Name[pt_PT]=Nova janela privada
+Name[rm]=Nova fanestra privata
+Name[ro]=Fereastră privată nouă
+Name[ru]=Новое приватное окно
+Name[sat]=नावा निजेराक् विंडो (W )
+Name[si]=නව පුද්ගලික කවුළුව (W)
+Name[sk]=Nové okno v režime Súkromné prehliadanie
+Name[sl]=Novo zasebno okno
+Name[son]=Sutura zanfun taaga
+Name[sq]=Dritare e Re Private
+Name[sr]=Нови приватан прозор
+Name[sv_SE]=Nytt privat fönster
+Name[ta]=புதிய தனிப்பட்ட சாளரம்
+Name[te]=కొత్త ఆంతరంగిక విండో
+Name[th]=หน้าต่างส่วนตัวใหม่
+Name[tr]=Yeni gizli pencere
+Name[tsz]=Juchiiti eraatarakua jimpani
+Name[uk]=Приватне вікно
+Name[ur]=نیا نجی دریچہ
+Name[uz]=Yangi maxfiy oyna
+Name[vi]=Cửa sổ riêng tư mới
+Name[wo]=Panlanteeru biir bu bees
+Name[xh]=Ifestile yangasese entsha
+Name[zh_CN]=新建隐私浏览窗口
+Name[zh_TW]=新增隱私視窗
+Exec=doas namespace /usr/local/bin/firefox-netns -private-window %u
+
+[Desktop Action profile-manager-window]
+Name=Open the Profile Manager
+Name[cs]=Správa profilů
+Name[de]=Profilverwaltung öffnen
+Name[fr]=Ouvrir le gestionnaire de profils
+Exec=firefox --ProfileManager
+#+END_SRC
+
+**** transmission-vpn config
+
+#+NAME: transmission-vpn
+#+BEGIN_SRC conf
+[Desktop Entry]
+Name[an]=Transmission - vpn
+Name[ar]=ترانزميشن
+Name[ast]=Transmission
+Name[be]=Transmission
+Name[bg]=Transmission
+Name[bn]=ট্রান্সমিশন
+Name[ca]=Transmission
+Name[ca@valencia]=Transmission
+Name[ckb]=Transmission
+Name[cs]=Transmission
+Name[da]=Transmission
+Name[de]=Transmission
+Name[el]=Transmission
+Name[en_AU]=Transmission
+Name[en_CA]=Transmission
+Name[en_GB]=Transmission
+Name[eo]=Transmission
+Name[es]=Transmission
+Name[et]=Transmission
+Name[eu]=Transmission
+Name[fa]=ترنسمیشن
+Name[fi]=Transmission
+Name[fil]=Transmission
+Name[fo]=Transmission
+Name[fr]=Transmission
+Name[fr_CA]=Transmission
+Name[gl]=Transmission
+Name[he]=‏Transmission
+Name[hi]=ट्रांसमिशन
+Name[hr]=Transmission
+Name[hu]=Transmission
+Name[id]=Transmission
+Name[is]=Transmission
+Name[it]=Transmission
+Name[ja]=Transmission
+Name[ka]=Transmission
+Name[kk]=Transmission
+Name[ko]=트랜스미션
+Name[ku]=Transmission
+Name[ky]=Transmission
+Name[li]=Transmission
+Name[lt]=Transmission
+Name[lv]=Transmission
+Name[mk]=Transmission
+Name[ms]=Transmission
+Name[nb]=Transmission
+Name[nl]=Transmission
+Name[nn]=Transmission
+Name[oc]=Transmission
+Name[pl]=Transmission
+Name[pt]=Transmission
+Name[pt_BR]=Transmission
+Name[pt_PT]=Transmission
+Name[ro]=Transmission
+Name[ru]=Transmission
+Name[si]=ට්‍රාන්ස්මිෂන්
+Name[sk]=Transmission
+Name[sl]=Transmission
+Name[sq]=Transmission
+Name[sr]=Трансмисија
+Name[sv]=Transmission
+Name[te]=ట్రాన్స్‍మిషన్
+Name[th]=Transmission
+Name[tr]=Transmission
+Name[ug]=Transmission
+Name[uk]=Transmission
+Name[uz]=Transmission
+Name[vi]=Transmission
+Name[zh_CN]=Transmission
+Name[zh_HK]=Transmission
+Name[zh_TW]=Transmission
+Name=Transmission
+GenericName[ar]=عميل «بت تورنت»
+GenericName[ast]=Veceru de BitTorrent
+GenericName[be]=Кліент BitTorrent
+GenericName[bg]=BitTorrent клиент
+GenericName[bn]=বিটটরেন্ট ক্লায়েন্ট
+GenericName[br]=Arval BitTorrent
+GenericName[ca]=Client de BitTorrent
+GenericName[ca@valencia]=Client de BitTorrent
+GenericName[cs]=BitTorrent klient
+GenericName[da]=BitTorrent-klient
+GenericName[de]=BitTorrent-Programm
+GenericName[el]=Πελάτης BitTorrent
+GenericName[en_AU]=BitTorrent Client
+GenericName[en_CA]=BitTorrent Client
+GenericName[en_GB]=BitTorrent Client
+GenericName[eo]=BitTorrent-Kliento
+GenericName[es]=Cliente de BitTorrent
+GenericName[et]=BitTorrenti klient
+GenericName[eu]=BitTorrent bezeroa
+GenericName[fa]=کارخواه بیت‌تورنت
+GenericName[fi]=BitTorrent-sovellus
+GenericName[fo]=BitTorrent-viðskiftari
+GenericName[fr]=Client BitTorrent
+GenericName[fr_CA]=Client BitTorrent
+GenericName[gl]=Cliente de BitTorrent
+GenericName[he]=לקוח ביטורנט
+GenericName[hi]=बिट टोरेंट साधन
+GenericName[hr]=BitTorrent klijent
+GenericName[hu]=BitTorrent-kliens
+GenericName[ia]=Cliente de BitTorrent
+GenericName[id]=Aplikasi BitTorrent
+GenericName[is]=BitTorrent forrit
+GenericName[it]=Client BitTorrent
+GenericName[ja]=BitTorrent クライアント
+GenericName[ka]=BitTorrent -ის კლიენტი
+GenericName[kk]=BitTorrent қолданбасы
+GenericName[ko]=비트토렌트 클라이언트
+GenericName[ku]=Daxwazkera BitTorrent
+GenericName[ky]=BitTorrent-клиенти
+GenericName[li]=BitTorrent-client
+GenericName[lt]=„BitTorrent“ klientinė programa
+GenericName[lv]=BitTorrent klients
+GenericName[mk]=Клиент за BitTorrent
+GenericName[ms]=Klient BitTorrent
+GenericName[nb]=BitTorrent-klient
+GenericName[nl]=BitTorrent-cliënt
+GenericName[nn]=BitTorrent-klient
+GenericName[oc]=Client BitTorrent
+GenericName[pl]=Klient sieci BitTorrent
+GenericName[pt]=Cliente BitTorrent
+GenericName[pt_BR]=Cliente BitTorrent
+GenericName[pt_PT]=Cliente BitTorrent
+GenericName[ro]=Client BitTorrent
+GenericName[ru]=Клиент BitTorrent
+GenericName[sk]=BitTorrent klient
+GenericName[sl]=BitTorrent odjemalec
+GenericName[sq]=BitTorrent Klient
+GenericName[sr]=БитТорент програм
+GenericName[sv]=BitTorrent-klient
+GenericName[te]=బిట్ టోరెంట్ క్లయింటు
+GenericName[th]=โปรแกรม BitTorrent
+GenericName[tr]=BitTorrent İstemcisi
+GenericName[ug]=بىتتوررېنت خېرىدارى
+GenericName[uk]=Клієнт BitTorrent
+GenericName[uz]=BitTorrent mijozi
+GenericName[vi]=Trình khách BitTorrent
+GenericName[zh_CN]=BitTorrent 客户端
+GenericName[zh_HK]=BitTorrent 用戶端
+GenericName[zh_TW]=BitTorrent 用戶端
+GenericName=BitTorrent Client
+Comment[ar]=نزّل وشارك ملفات عبر «بت تورنت»
+Comment[ast]=Baxar y compartir ficheros per aciu de BitTorrent
+Comment[be]=Спампоўванне і раздача файлаў праз BitTorrent
+Comment[bg]=Изтегляне и споделяне на файлове чрез BitTorrent
+Comment[bn]=সমস্ত BitTorrent এ ফাইল ডাউনলোড এবং অংশগ্রহন করুন
+Comment[ca]=Baixeu i compartiu fitxers mitjançant BitTorrent
+Comment[ca@valencia]=Baixeu i compartiu fitxers mitjançant el BitTorrent
+Comment[cs]=Stahovat a sdílet soubory přes BitTorrent
+Comment[da]=Download og del filer via BitTorrent
+Comment[de]=Dateien über BitTorrent herunterladen und verteilen
+Comment[el]=Λήψη και διαμοιρασμός των αρχείων μέσω του BitTorrent
+Comment[en_AU]=Download and share files over BitTorrent
+Comment[en_CA]=Download and share files over BitTorrent
+Comment[en_GB]=Download and share files over BitTorrent
+Comment[eo]=Elŝuti kaj kunhavigi dosierojn per BitTorrent
+Comment[es]=Descargue y comparta archivos mediante BitTorrent
+Comment[et]=Laadi alla ja levita faile BitTorrenti kaudu
+Comment[eu]=Deskargatu eta partekatu fitxategiak BitTorrent bidez
+Comment[fa]=بارگیری و هم‌رسانی پرونده‌ها با بیت‌تورنت
+Comment[fi]=Lataa ja jaa tiedostoja BitTorrentin avulla
+Comment[fo]=Tak niður og deil fílur yvir BitTorrent
+Comment[fr]=Télécharger et partager des fichiers avec BitTorrent
+Comment[fr_CA]=Télécharger et partager des fichiers avec BitTorrent
+Comment[gl]=Descargue e comparta ficheiros a través da rede BitTorrent
+Comment[he]=הורדה ושיתוף קבצים ברשת ביטורנט
+Comment[hi]=बिट टोरेंट पर फाइलें डाउनलोड कर सहभाजन करें
+Comment[hr]=Preuzimajte i dijelite datoteke preko BitTorrenta
+Comment[hu]=Fájlok letöltése és megosztása BitTorrenten keresztül
+Comment[id]=Unduh dan berbagi berkas melalui BitTorrent
+Comment[is]=Sækja og deila skrám með BitTorrent
+Comment[it]=Scarica e condivide file via BitTorrent
+Comment[ja]=BitTorrent を通じてファイルのダウンロードと共有
+Comment[kk]=BitTorrent желісінде файлдарды жүктеңіз және бөлісіңіз
+Comment[ko]=비트토렌트를 이용하여 파일을 다운로드 및 공유합니다
+Comment[ky]=BitTorrent'тен файлдарды жүктөңүз жана бөлүшүңүз
+Comment[li]=Bestanje binnehoalen en deilen via BitTorrent
+Comment[lt]=Atsiųskite ir dalinkitės failais per „BitTorrent“
+Comment[lv]=Lejupielādēt un dalīties ar datnēm caur BitTorrent
+Comment[mk]=Преземете и споделувајте датотеки преку BitTorrent
+Comment[ms]=Muat turun dan kongsi fail melalui BitTorrent
+Comment[nb]=Last ned og del filer med BitTorrent
+Comment[nl]=Bestanden downloaden en delen via BitTorrent
+Comment[nn]=Last ned og del filer over BitTorrent
+Comment[oc]=Recep e parteja de fichièrs via BitTorrent
+Comment[pl]=Pobieranie i udostępnianie plików przez sieć BitTorrent
+Comment[pt]=Descarregar e partilhar ficheiros pelo BitTorrent
+Comment[pt_BR]=Baixar e compartilhar arquivos pelo BitTorrent
+Comment[pt_PT]=Descarregar e partilhar ficheiros pelo BitTorrent
+Comment[ro]=Descarcă și partajează fișiere prin BitTorrent
+Comment[ru]=Загружайте и обменивайтесь файлами с помощью BitTorrent
+Comment[sk]=Sťahujte a zdieľajte súbory cez BitTorrent
+Comment[sl]=Prejemajte in dajte datoteke v souporabo preko BitTorrenta
+Comment[sq]=Shkarko dhe shpërnda skedarët me BitTorrent
+Comment[sr]=Преузимајте и размењујте датотеке преко БитТорент протокола
+Comment[sv]=Hämta och dela filer över BitTorrent
+Comment[te]=దిగుమతిచేయి మరియు దస్త్రాలను బిట్ టోరెంట్ మీదుగా పంచుకొను
+Comment[th]=ดาวน์โหลดและแลกเปลี่ยนแฟ้มผ่าน BitTorrent
+Comment[tr]=Dosyaları BitTorrent üzerinden indir ve paylaş
+Comment[ug]=بىتتوررېنت ئارقىلىق ھۆججەت چۈشۈرۈش ۋە ھەمبەھىرلەش
+Comment[uk]=Завантажуйте та розповсюджуйте файли через BitTorrent
+Comment[uz]=BitTorrent orqail fayllarni yuklab olish va bo‘lishish
+Comment[vi]=Tải và chia sẻ tập tin qua BitTorrent
+Comment[zh_CN]=通过 BitTorrent 下载和共享文件
+Comment[zh_HK]=透過 BitTorrent 來下載和分享檔案
+Comment[zh_TW]=透過 BitTorrent 協定來下載和分享檔案
+Comment=Download and share files over BitTorrent
+# Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+Keywords[be]=торэнты;спампоўванне;раздача;раздаць;раздача;
+Keywords[bg]=торенти;сваляне;качване;споделени;споделяне;
+Keywords[ca]=torrents;baixada;pujada;compartir;compartició:pujar:baixar;
+Keywords[da]=torrents;download;upload;del;deling;
+Keywords[de]=Torrents;Herunterladen;Hochladen;Teilen;
+Keywords[el]=torrent;λήψη;αποστολή;μοίρασε;διαμοιρασμός;
+Keywords[eo]=torentoj;alŝuti;elŝuti;konigi;
+Keywords[es]=torrents;descargando;subiendo;ratio;compartiendo;
+Keywords[et]=torrentid;allalaadimised;üleslaadimine;jaga;jagamine;
+Keywords[eu]=torrentak;deskargatzen;kargatzen;partekatu;partekatzen;
+Keywords[fi]=torrents;downloading;uploading;share;sharing;torrent;tiedostonjako;lataus;
+Keywords[fr]=torrents;téléchargement;téléversement;partager;partage;
+Keywords[he]=טורנטים;טורנט;הורדה;העלאה;שיתוף;משותף;לשתף;להוריד;להעלות;יניקה;זריעה;
+Keywords[hi]=टोरेंट;डाउनलोड;अपलोड;सहभाजन;
+Keywords[hr]=torrenti;preuzimanje;slanje;dijeli;dijeljenje;
+Keywords[hu]=torrentek;letöltés;feltöltés;megosztás;
+Keywords[id]=torrent;mengunduh;mengunggah;berbagi;
+Keywords[is]=torrent;sækja;niðurhal;innsending;deila;deiling;
+Keywords[it]=torrent;scaricamento;ricezione;caricamento;condividere;condivisione;upload;download;
+Keywords[ja]=トレント;ダウンロード中;アップロード中;共有;共有中;
+Keywords[lt]=torrentai;atsiuntimas;išsiuntimas;bendrinimas;dalinimas;
+Keywords[nb]=torrenter;nedlasting;opplasting;del;deling;
+Keywords[nl]=torrents;downloaden;uploaden;deel;delen;
+Keywords[oc]=torrents;downloading;uploading;share;sharing;telecargar;partatge;partejar;
+Keywords[pl]=torrenty;pobieranie;ściąganie;pobierz;ściągnij;wysyłanie;udostępnianie;wyślij;udostępnij;
+Keywords[pt]=torrents;descarregar;baixar;transferir;transferência;enviar;partilhar;partilha;
+Keywords[pt_BR]=torrents;baixando;enviando,compartilhar;compartilhando;
+Keywords[pt_PT]=torrents;descarregar;baixar;transferir;transferência;enviar;partilhar;partilha;
+Keywords[ru]=торренты;скачивание;загрузка;раздать;раздача;
+Keywords[sr]=torrents;downloading;uploading;share;sharing;торенти;преузимање;даунлоудовање;отпремање;аплоудовање;дељење;шеровање;preuzimanje;daunloudovanje;otpremanje;aploudovanje;deljenje;šerovanje;
+Keywords[sv]=torrenter;hämtar;skickar;dela;delar;
+Keywords[tr]=torrentler;indirme;yükleme;gönderme;paylaş;paylaşım;
+Keywords[uk]=torrents;downloading;uploading;share;sharing;
+Keywords[zh_CN]=torrents;downloading;uploading;share;sharing;种子;下载;上传;分享;共享;
+Keywords[zh_TW]=torrents;正在下載;正在上傳;分享;分享中;
+Keywords=torrents;downloading;uploading;share;sharing;
+Exec=doas namespace transmission-gtk %U
+Icon=transmission
+Terminal=false
+TryExec=doas namespace transmission-gtk
+Type=Application
+StartupNotify=true
+MimeType=application/x-bittorrent;x-scheme-handler/magnet;
+Categories=Network;FileTransfer;P2P;GTK;
+X-Ubuntu-Gettext-Domain=transmission
+X-AppInstall-Keywords=torrent
+Actions=Pause;Minimize;
+
+[Desktop Action Pause]
+Name[be]=Запусціць Transmission з прыпыненымі торэнтамі
+Name[bg]=Стартирай Transmission с всички торенти на пауза
+Name[ca]=Inicia Transmission amb tots els torrents en pausa
+Name[cs]=Spustit Transmission se všemi torrenty pozastavenými
+Name[da]=Start Transmission med alle torrents på pause
+Name[de]=Mit allen Torrents pausiert starten
+Name[el]=Εκκίνηση του Transmission με Όλα τα Torrent σε Παύση
+Name[es]=Iniciar con todos los torrents pausados
+Name[et]=Käivita Transmission kõikide torrentite seisatud olekuga
+Name[eu]=Abiarazi Transmission Torrent guztiak pausatuta mantenduz
+Name[fi]=Käynnistä Transmission kaikki torrentit pysäytettyinä
+Name[fr]=Démarrer Transmission avec tous les torrents en pause
+Name[he]=הפעלת ‏Transmission כשכל הטורנטים מופסקים
+Name[hi]=ट्रांसमिशन आरंभ पर सभी टोरेंट स्थगित रखें
+Name[hr]=Pokreni Transmission sa svim torentima pauziranim
+Name[hu]=A Transmission indítása az összes torrent szüneteltetésével
+Name[id]=Mulai Transmission dengan Semua Torrent Dijeda
+Name[is]=Ræsa Transmission með allar torrent-skrár í bið
+Name[it]=Avvia con tutti i torrent in pausa
+Name[ja]=全トレントを停止状態で Transmission を起動
+Name[ko]=모든 토렌트를 멈춘 상태로 시작
+Name[lt]=Paleisti Transmission pristabdžius visus torentus
+Name[nb]=Start Transmission med Alle Torrents i Pause
+Name[nl]=Transmission starten met alle torrents gepauzeerd
+Name[oc]=Aviar Transmission amb totes los torrents en pausa
+Name[pl]=Uruchom ze wstrzymanymi torrentami
+Name[pt]=Iniciar o Transmission com todos os torrents em pausa
+Name[pt_BR]=Iniciar Transmission Com Todos Os Torrents Pausados
+Name[pt_PT]=Iniciar o Transmission com todos os torrents em pausa
+Name[ru]=Запустить Transmission с приостановленными торрентами
+Name[sr]=Покрени Трансмисију и заустави све торенте
+Name[sv]=Starta Transmission med alla torrenter pausade
+Name[tr]=Transmission ile Tüm Torrentleri Duraklatılmış Başlat
+Name[uk]=Запустити Transmission з призупинкою усіх торентів
+Name[zh_CN]=启动 Transmission 时暂停全部任务
+Name[zh_TW]=啟動 Transmission 時暫停所有 Torrents
+Name=Start Transmission with All Torrents Paused
+Exec=doas namespace transmission-gtk --paused
+
+[Desktop Action Minimize]
+Name[be]=Запусціць Transmission у згорнутым выглядзе
+Name[bg]=Стартирай Transmission минимизиран
+Name[ca]=Inicia Transmission minimitzat
+Name[cs]=Spustit Transmission minimalizovaný
+Name[da]=Start Transmission minimeret
+Name[de]=Transmission minimiert starten
+Name[el]=Εκκίνηση του Transmission Ελαχιστοποιημένο
+Name[eo]=Minimumigi Transmission kiam ĝi komencas
+Name[es]=Iniciar Transmission minimizado
+Name[et]=Käivita Transmission minimeerituna
+Name[eu]=Abiarazi Transmission minimizatua
+Name[fi]=Käynnistä Transmission pienennettynä
+Name[fr]=Démarrer Transmission réduit
+Name[he]=הפעלת ‏Transmission במצב ממוזער
+Name[hi]=ट्रांसमिशन संक्षिप्त रूप में आरंभ करें
+Name[hr]=Pokreni Trasmission smanjen
+Name[hu]=A Transmission indítása minimalizálva
+Name[id]=Mulai Transmission Diminimalkan
+Name[is]=Ræsa Transmission lágmarkað
+Name[it]=Avvia minimizzato
+Name[ja]=最小化して Transmission を起動
+Name[ko]=트랜스미션을 창이 최소화된 상태로 시작하기
+Name[lt]=Paleisti Transmission suskleistą
+Name[nb]=Start Transmission Minimert
+Name[nl]=Transmission geminimaliseerd starten
+Name[oc]=Aviar Transmission redusit
+Name[pl]=Uruchom zminimalizowany
+Name[pt]=Iniciar o Transmission minimizado
+Name[pt_BR]=Iniciar Transmission Minimizado
+Name[pt_PT]=Iniciar o Transmission minimizado
+Name[ru]=Запустить Transmission в свернутом виде
+Name[sr]=Покрени умањену Трансмисију
+Name[sv]=Starta Transmission minimerad
+Name[tr]=Transmission'ı Küçültülmüş Başlat
+Name[uk]=Запустити Transmission згорнутим
+Name[zh_CN]=启动 Transmission 时最小化
+Name[zh_TW]=啟動 Transmission 時最小化
+Name=Start Transmission Minimized
+Exec=doas namespace transmission-gtk --minimized
+#+END_SRC
+
+**** mpv config
+
+#+NAME: mpv
+#+BEGIN_SRC conf
+[Desktop Entry]
+Type=Application
+Name=mpv Media Player
+Name[ca]=Reproductor multimèdia mpv
+Name[cs]=mpv přehrávač
+Name[da]=mpv-medieafspiller
+Name[fr]=Lecteur multimédia mpv
+Name[ja]=mpv メディアプレイヤー
+Name[pl]=Odtwarzacz mpv
+Name[ru]=Проигрыватель mpv
+Name[tr]=mpv Ortam Oynatıcı
+Name[zh_CN]=mpv 媒体播放器
+Name[zh_TW]=mpv 媒體播放器
+GenericName=Multimedia player
+GenericName[cs]=Multimediální přehrávač
+GenericName[da]=Multimedieafspiller
+GenericName[fr]=Lecteur multimédia
+GenericName[ja]=マルチメディアプレイヤー
+GenericName[tr]=Çoklu ortam oynatıcı
+GenericName[zh_CN]=多媒体播放器
+GenericName[zh_TW]=多媒體播放器
+Comment=Play movies and songs
+Comment[ca]=Reproduïu vídeos i cançons
+Comment[cs]=Přehrává filmy a hudbu
+Comment[da]=Afspil film og sange
+Comment[de]=Filme und Musik abspielen
+Comment[es]=Reproduzca vídeos y canciones
+Comment[fr]=Lire des vidéos et des musiques
+Comment[ja]=映画や音楽を再生する
+Comment[it]=Lettore multimediale
+Comment[pl]=Odtwarzaj filmy i muzykę
+Comment[ru]=Воспроизвести фильмы и музыку
+Comment[tr]=Filmleri ve şarkıları oynatın
+Comment[zh_CN]=播放电影和歌曲
+Comment[zh_TW]=播放電影和歌曲
+Icon=mpv
+TryExec=mpv
+Exec=mpv --player-operation-mode=pseudo-gui --fs --fs-screen=1 -- %U
+
+Terminal=false
+Categories=AudioVideo;Audio;Video;Player;TV;
+MimeType=application/ogg;application/x-ogg;application/mxf;application/sdp;application/smil;application/x-smil;application/streamingmedia;application/x-streamingmedia;application/vnd.rn-realmedia;application/vnd.rn-realmedia-vbr;audio/aac;audio/x-aac;audio/vnd.dolby.heaac.1;audio/vnd.dolby.heaac.2;audio/aiff;audio/x-aiff;audio/m4a;audio/x-m4a;application/x-extension-m4a;audio/mp1;audio/x-mp1;audio/mp2;audio/x-mp2;audio/mp3;audio/x-mp3;audio/mpeg;audio/mpeg2;audio/mpeg3;audio/mpegurl;audio/x-mpegurl;audio/mpg;audio/x-mpg;audio/rn-mpeg;audio/musepack;audio/x-musepack;audio/ogg;audio/scpls;audio/x-scpls;audio/vnd.rn-realaudio;audio/wav;audio/x-pn-wav;audio/x-pn-windows-pcm;audio/x-realaudio;audio/x-pn-realaudio;audio/x-ms-wma;audio/x-pls;audio/x-wav;video/mpeg;video/x-mpeg2;video/x-mpeg3;video/mp4v-es;video/x-m4v;video/mp4;application/x-extension-mp4;video/divx;video/vnd.divx;video/msvideo;video/x-msvideo;video/ogg;video/quicktime;video/vnd.rn-realvideo;video/x-ms-afs;video/x-ms-asf;audio/x-ms-asf;application/vnd.ms-asf;video/x-ms-wmv;video/x-ms-wmx;video/x-ms-wvxvideo;video/x-avi;video/avi;video/x-flic;video/fli;video/x-flc;video/flv;video/x-flv;video/x-theora;video/x-theora+ogg;video/x-matroska;video/mkv;audio/x-matroska;application/x-matroska;video/webm;audio/webm;audio/vorbis;audio/x-vorbis;audio/x-vorbis+ogg;video/x-ogm;video/x-ogm+ogg;application/x-ogm;application/x-ogm-audio;application/x-ogm-video;application/x-shorten;audio/x-shorten;audio/x-ape;audio/x-wavpack;audio/x-tta;audio/AMR;audio/ac3;audio/eac3;audio/amr-wb;video/mp2t;audio/flac;audio/mp4;application/x-mpegurl;video/vnd.mpegurl;application/vnd.apple.mpegurl;audio/x-pn-au;video/3gp;video/3gpp;video/3gpp2;audio/3gpp;audio/3gpp2;video/dv;audio/dv;audio/opus;audio/vnd.dts;audio/vnd.dts.hd;audio/x-adpcm;application/x-cue;audio/m3u;
+X-KDE-Protocols=ftp,http,https,mms,rtmp,rtsp,sftp,smb,srt,rist
+StartupWMClass=mpv
+#+END_SRC
+
 *** desktop files tangle
 **** emacsclient tangle
 
@@ -3018,6 +3696,54 @@ Exec=emacs %F
 #+NAME: emacsclient-current-dir
 #+BEGIN_SRC conf :noweb yes :tangle ".local/share/applications/emacsclient.desktop"
 <<emacsclient>>
+#+END_SRC
+
+**** firefox-vpn tangle
+
++ home dir
+
+#+NAME: firefox-vpn-home-dir
+#+BEGIN_SRC conf :noweb yes :tangle "~/.local/share/applications/firefox-vpn.desktop"
+<<firefox-vpn>>
+#+END_SRC
+
++ current dir
+
+#+NAME: firefox-vpn-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle ".local/share/applications/firefox-vpn.desktop"
+<<firefox-vpn>>
+#+END_SRC
+
+**** transmission-vpn tangle
+
++ home dir
+
+#+NAME: transmission-vpn-home-dir
+#+BEGIN_SRC conf :noweb yes :tangle "~/.local/share/applications/transmission-vpn.desktop"
+<<transmission-vpn>>
+#+END_SRC
+
++ current dir
+
+#+NAME: transmission-vpn-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle ".local/share/applications/transmission-vpn.desktop"
+<<transmission-vpn>>
+#+END_SRC
+
+**** mpv tangle
+
++ home dir
+
+#+NAME: mpv-home-dir
+#+BEGIN_SRC conf :noweb yes :tangle "~/.local/share/applications/mpv.desktop"
+<<mpv>>
+#+END_SRC
+
++ current dir
+
+#+NAME: mpv-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle ".local/share/applications/mpv.desktop"
+<<mpv>>
 #+END_SRC
 
 ** autostart
