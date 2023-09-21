@@ -617,7 +617,6 @@
 
 ;; set tramp shell to bash to avoid zsh problems
 (setenv "SHELL" "/usr/bin/bash")
-(customize-set-variable 'tramp-default-user "root")
 (setq tramp-allow-unsafe-temporary-files t)
 
 ;; tramp backup directory
